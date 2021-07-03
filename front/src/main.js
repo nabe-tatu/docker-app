@@ -9,6 +9,7 @@ import store from './store'
 Vue.config.performance = true
 Vue.use(CoreuiVue)
 Vue.prototype.$log = console.log.bind(console)
+require("./bootstrap");
 
 new Vue({
   el: '#app',

@@ -10,12 +10,14 @@
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <CInput
+                      v-model="form.email"
                     placeholder="Username"
                     autocomplete="username email"
                   >
                     <template #prepend-content><CIcon name="cil-user"/></template>
                   </CInput>
                   <CInput
+                      v-model="form.password"
                     placeholder="Password"
                     type="password"
                     autocomplete="curent-password"
@@ -24,7 +26,7 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4">Login</CButton>
+                      <CButton color="primary" class="px-4" @click="login">Login</CButton>
                     </CCol>
                     <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0">Forgot password?</CButton>
@@ -61,6 +63,26 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+    data: function () {
+      return {
+          form: {
+              email: '',
+              password: ''
+          }
+      }
+    },
+    methods: {
+      login: function () {
+          window.axios.post('/login', this.form)
+              .then((response) => {
+                  console.log(response);
+                  window.location.href = '/dashboard';
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+      }
+    }
 }
 </script>

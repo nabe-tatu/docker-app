@@ -20,6 +20,8 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      *
+     * TODO::クッキー名変更したい
+     *
      * @return void
      */
     public function boot()
