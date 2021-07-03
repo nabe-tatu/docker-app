@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('app');
-//});
 
 Route::view('login', 'app')->name('login');
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class,'login']);
 Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class,'logout']);
 
-Route::get('/{any}', function() {
-    return view('app');
-})->where('any', '.*');
+Route::get('/{any}', [\App\Http\Controllers\SpaController::class, 'index'])
+    ->where('any', '.*');
