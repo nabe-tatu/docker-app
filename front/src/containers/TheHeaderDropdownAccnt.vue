@@ -59,7 +59,7 @@
     <CDropdownItem>
       <CIcon name="cil-shield-alt" /> Lock Account
     </CDropdownItem>
-    <CDropdownItem>
+    <CDropdownItem @click="logout">
       <CIcon name="cil-lock-locked" /> Logout
     </CDropdownItem>
   </CDropdown>
@@ -69,10 +69,21 @@
 export default {
   name: 'TheHeaderDropdownAccnt',
   data () {
-    return { 
+    return {
       itemsCount: 42
     }
-  }
+  },
+    methods: {
+      logout: function () {
+          window.axios.get('/logout', this.form)
+              .then((response) => {
+                  window.location.href = '/login';
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+      }
+    }
 }
 </script>
 

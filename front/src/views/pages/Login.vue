@@ -76,7 +76,6 @@ export default {
       login: function () {
           window.axios.post('/login', this.form)
               .then((response) => {
-                  console.log(response);
                   window.location.href = '/dashboard';
               })
               .catch((error) => {
