@@ -5,7 +5,9 @@ import Router from 'vue-router'
 const TheContainer = () => import('@/containers/TheContainer')
 
 // Views
-const Dashboard = () => import('@/views/Dashboard')
+const Dashboard = () => import('@/pages/dashboard/Dashboard')
+const Home = () => import('@/pages/home/Home')
+const Tweet = () => import('@/pages/tweet/Tweet')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -80,10 +82,20 @@ function configRoutes() {
         },
         {
             path: '/',
-            redirect: '/dashboard',
+            redirect: '/home',
             name: 'Home',
             component: TheContainer,
             children: [
+                {
+                    path: 'home',
+                    name: 'Home',
+                    component: Home
+                },
+                {
+                    path: 'tweet',
+                    name: 'Tweet',
+                    component: Tweet
+                },
                 {
                     path: 'dashboard',
                     name: 'Dashboard',

@@ -8,10 +8,12 @@
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
-          <img
-            src="img/avatars/6.jpg"
-            class="c-avatar-img "
-          />
+            <!-- TODO::ヘッダー、アカウントの画像 -->
+<!--          <img-->
+<!--            src=""-->
+<!--            class="c-avatar-img "-->
+<!--          />-->
+            <CIcon name="cil-envelope-open"/>
         </div>
       </CHeaderNavLink>
     </template>

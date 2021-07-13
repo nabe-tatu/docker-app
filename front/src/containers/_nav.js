@@ -2,20 +2,76 @@ export default [
   {
     _name: 'CSidebarNav',
     _children: [
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Dashboard',
-        to: '/dashboard',
-        icon: 'cil-speedometer',
-        badge: {
-          color: 'primary',
-          text: 'NEW'
-        }
-      },
+        {
+            _name: 'CSidebarNavItem',
+            name: 'ホーム',
+            to: '/home',
+            icon: 'cil-speedometer',
+            // badge: {
+            //   color: 'primary',
+            //   text: 'NEW'
+            // }
+        },
+        {
+            _name: 'CSidebarNavTitle',
+            _children: ['サイドバー']
+        },
+        {
+            _name: 'CSidebarNavItem',
+            name: 'つぶやき',
+            to: '/tweet',
+            icon: 'cil-speedometer',
+            badge: {
+                color: 'primary',
+                text: 'NEW'
+            }
+        },
+        {
+            _name: 'CSidebarNavItem',
+            name: '勉強状況',
+            to: '/progress',
+            icon: 'cil-speedometer',
+            badge: {
+                color: 'primary',
+                text: 'NEW'
+            }
+        },
+        {
+            _name: 'CSidebarNavItem',
+            name: '問い合わせ',
+            to: '/inquiry',
+            icon: 'cil-speedometer',
+            badge: {
+                color: 'primary',
+                text: 'NEW'
+            }
+        },
+        {
+            _name: 'CSidebarNavItem',
+            name: '設定',
+            to: '/setting',
+            icon: 'cil-speedometer',
+            badge: {
+                color: 'primary',
+                text: 'NEW'
+            }
+        },
+
+
       {
         _name: 'CSidebarNavTitle',
         _children: ['Theme']
       },
+        {
+            _name: 'CSidebarNavItem',
+            name: 'Dashboard',
+            to: '/dashboard',
+            icon: 'cil-speedometer',
+            badge: {
+                color: 'primary',
+                text: 'NEW'
+            }
+        },
       {
         _name: 'CSidebarNavItem',
         name: 'Colors',
@@ -49,7 +105,7 @@ export default [
           {
             name: 'Carousels',
             to: '/base/carousels'
-          }, 
+          },
           {
             name: 'Collapses',
             to: '/base/collapses'
