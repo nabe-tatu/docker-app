@@ -1,7 +1,6 @@
 <template>
 <div>
-    リスト
-    <tweet-card></tweet-card>
+    <tweet-card v-for="n in 10" :key="n"></tweet-card>
 </div>
 </template>
 

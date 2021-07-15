@@ -11,13 +11,16 @@ module.exports = {
         '@coreui/utils',
         '@coreui/vue'
     ],
-    outputDir: '../public/app',
-    publicPath: '/app',
-    pages: {
-        index: {
-            entry: 'src/main.js',
-            template: 'public/index.html',
-            filename: '../../resources/views/app.blade.php',
-        }
-    }
+
+    //TODO:: モック作成し終えたら戻す
+
+    // outputDir: '../public/app',
+    // publicPath: '/app',
+    // pages: {
+    //     index: {
+    //         entry: 'src/main.js',
+    //         template: 'public/index.html',
+    //         filename: '../../resources/views/app.blade.php',
+    //     }
+    // }
 }
