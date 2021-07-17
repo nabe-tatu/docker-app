@@ -14,7 +14,10 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('tweet_id');
+            $table->string('comment', 50)->index('users_comment_index');
             $table->timestamps();
         });
     }
