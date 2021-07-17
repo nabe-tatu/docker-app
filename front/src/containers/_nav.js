@@ -3,6 +3,10 @@ export default [
     _name: 'CSidebarNav',
     _children: [
         {
+            _name: 'CSidebarNavTitle',
+            _children: ['home']
+        },
+        {
             _name: 'CSidebarNavItem',
             name: 'ホーム',
             to: '/home',
@@ -14,13 +18,13 @@ export default [
         },
         {
             _name: 'CSidebarNavTitle',
-            _children: ['サイドバー']
+            _children: ['menu']
         },
         {
             _name: 'CSidebarNavItem',
             name: 'つぶやき',
             to: '/tweet',
-            icon: 'cil-speedometer',
+            icon: 'cil-task',
             badge: {
                 color: 'primary',
                 text: 'NEW'
@@ -30,7 +34,7 @@ export default [
             _name: 'CSidebarNavItem',
             name: '勉強状況',
             to: '/progress',
-            icon: 'cil-speedometer',
+            icon: 'cil-pencil',
             badge: {
                 color: 'primary',
                 text: 'NEW'
@@ -40,7 +44,7 @@ export default [
             _name: 'CSidebarNavItem',
             name: '問い合わせ',
             to: '/inquiry',
-            icon: 'cil-speedometer',
+            icon: 'cil-envelope-open',
             badge: {
                 color: 'primary',
                 text: 'NEW'
@@ -50,7 +54,7 @@ export default [
             _name: 'CSidebarNavItem',
             name: '設定',
             to: '/setting',
-            icon: 'cil-speedometer',
+            icon: 'cil-settings',
             badge: {
                 color: 'primary',
                 text: 'NEW'
