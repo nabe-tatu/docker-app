@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Api\V1\TweetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+//Route::apiResource('tweet', TweetController::class);
+
+Route::prefix('v1')->middleware('auth:api')->group(function () {
+    Route::apiResource('tweet', TweetController::class)->only(['index']);
 });
+
+
