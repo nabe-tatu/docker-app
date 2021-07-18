@@ -16,7 +16,7 @@ class TweetController extends Controller
      */
     public function index()
     {
-        return TweetResource::collection(Tweet::paginate(10));
+        return TweetResource::collection(Tweet::with('user')->paginate(10));
     }
 
 //    /**

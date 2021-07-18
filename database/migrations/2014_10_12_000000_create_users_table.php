@@ -27,6 +27,10 @@ class CreateUsersTable extends Migration
                 ->default('名前')
                 ->comment('本名');
 
+            $table->string('profile')
+                ->default('プロフィール')
+                ->comment('プロフィール');
+
             $table->string('profile_image')
                 ->index('users_profile_image_index')
                 ->comment('プロフィール画像URL');

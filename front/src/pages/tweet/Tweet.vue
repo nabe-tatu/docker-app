@@ -8,7 +8,9 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <v-input placeholder="キーワード検索"></v-input>
-                <right-bar class="scroll"></right-bar>
+                <right-bar
+                    class="scroll"
+                    :recommendUsers="recommendUsers"></right-bar>
             </div>
         </div>
     </div>
@@ -26,15 +28,17 @@ name: "Tweet",
     components: {VInput, RightBar, TweetList},
     mixins: [ApiRouter, ErrorHandler],
     created: function() {
-        this.loadData();
+        this.loadTweetData();
+        this.loadRecommendUserData();
     },
     data: function () {
         return {
-            tweets: null
+            tweets: null,
+            recommendUsers: null
         }
     },
     methods: {
-        loadData: function () {
+        loadTweetData: function () {
             window.axios.get(this.routes.tweets)
                 .then((response) => {
                     this.tweets = response.data.data;
@@ -43,6 +47,15 @@ name: "Tweet",
                     console.log(error);
                 })
         },
+        loadRecommendUserData: function () {
+            window.axios.get(this.routes.recommendUsers)
+                .then((response) => {
+                    this.recommendUsers = response.data.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 }
 </script>

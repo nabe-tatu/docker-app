@@ -1,15 +1,22 @@
 <template>
 <div>
     <h3>おすすめユーザー</h3>
-    <tweet-list></tweet-list>
+    <user-list :users="recommendUsers"></user-list>
 </div>
 </template>
 
 <script>
-import TweetList from "@/component/tweet/tweetList/TweetList";
+import UserList from "@/component/user/userList/UserList";
 export default {
     name: "RecommendUser",
-    components: {TweetList}
+    components: {UserList},
+    props: {
+        recommendUsers: {
+            type: Array,
+            require: false,
+            default: null
+        }
+    },
 }
 </script>
 

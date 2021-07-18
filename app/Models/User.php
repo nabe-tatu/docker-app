@@ -41,4 +41,31 @@ class User extends AuthModel
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * つぶやき
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class,'user_id','id');
+    }
+
+    /**
+     * コメント
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'user_id','id');
+    }
+
+    /**
+     * お気に入り
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class,'user_id','id');
+    }
 }
