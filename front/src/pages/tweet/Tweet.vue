@@ -1,8 +1,10 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="tweets">
         <div class="row">
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                <tweet-list class="scroll"></tweet-list>
+                <tweet-list
+                    class="scroll"
+                    :tweets="tweets"></tweet-list>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <v-input placeholder="キーワード検索"></v-input>
@@ -16,24 +18,26 @@
 import TweetList from "@/component/tweet/tweetList/TweetList";
 import RightBar from "@/component/rightbar/RightBar/RightBar";
 import VInput from "@/component/form/VInput/VInput";
+import ApiRouter from "@/component/Systems/ApiRouter";
+import ErrorHandler from "@/component/Systems/ErrorHandler";
+
 export default {
 name: "Tweet",
     components: {VInput, RightBar, TweetList},
+    mixins: [ApiRouter, ErrorHandler],
     created: function() {
         this.loadData();
     },
     data: function () {
         return {
-            tweets: []
+            tweets: null
         }
     },
     methods: {
         loadData: function () {
-            window.console.log(1111111111);
-            window.axios.get('/api/tweet')
+            window.axios.get(this.routes.tweets)
                 .then((response) => {
-                    console.log(response);
-                    this.tweets = response.data;
+                    this.tweets = response.data.data;
                 })
                 .catch((error) => {
                     console.log(error);

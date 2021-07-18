@@ -15,6 +15,6 @@ use \App\Http\Controllers\Api\V1\TweetController;
 |
 */
 
-Route::middleware(['auth:api'])->group(function () {
-    Route::apiResource('tweet', TweetController::class)->only(['index']);
+Route::prefix('v1')->middleware(['auth:api'])->group(function () {
+    Route::apiResource('tweets', TweetController::class)->only(['index']);
 });
