@@ -46,7 +46,7 @@
     >
       <strong>設定</strong>
     </CDropdownHeader>
-    <CDropdownItem>
+    <CDropdownItem @click="toProfile">
       <CIcon name="cil-user" /> プロフィール
     </CDropdownItem>
 <!--    <CDropdownItem>-->
@@ -87,7 +87,10 @@ export default {
               .catch((error) => {
                   console.log(error);
               })
-      }
+      },
+        toProfile: function () {
+          this.$router.push({ name: 'Profile'});
+        }
     }
 }
 </script>

@@ -8,6 +8,9 @@ const TheContainer = () => import('@/containers/TheContainer')
 const Dashboard = () => import('@/pages/dashboard/Dashboard')
 const Home = () => import('@/pages/home/Home')
 const Tweet = () => import('@/pages/tweet/Tweet')
+const Profile = () => import('@/pages/profile/Profile')
+const Study = () => import('@/pages/study/Study')
+const Contact = () => import('@/pages/contact/Contact')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -96,6 +99,35 @@ function configRoutes() {
                     name: 'Tweet',
                     component: Tweet
                 },
+                {
+                    path: 'study',
+                    name: 'Study',
+                    component: Study
+                },
+                {
+                    path: 'contact',
+                    name: 'Contact',
+                    component: Contact
+                },
+                {
+                    path: 'setting',
+                    redirect: '/setting/profile',
+                    name: 'setting',
+                    component: {
+                        render(c) {
+                            return c('router-view')
+                        }
+                    },
+                    children: [
+                        {
+                            path: 'profile',
+                            name: 'Profile',
+                            component: Profile
+                        }
+                    ]
+                },
+
+
                 {
                     path: 'dashboard',
                     name: 'Dashboard',
