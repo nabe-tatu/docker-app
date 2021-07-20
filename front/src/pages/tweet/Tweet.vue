@@ -19,9 +19,9 @@
 <script>
 import TweetList from "@/component/tweet/tweetList/TweetList";
 import RightBar from "@/component/rightbar/RightBar/RightBar";
-import VInput from "@/component/form/VInput/VInput";
 import ApiRouter from "@/component/Systems/ApiRouter";
 import ErrorHandler from "@/component/Systems/ErrorHandler";
+import VInput from "@/component/form/VInput";
 
 export default {
 name: "Tweet",

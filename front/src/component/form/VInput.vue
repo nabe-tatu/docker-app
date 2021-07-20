@@ -1,25 +1,21 @@
 <template>
-    <div class="form-group row">
-<!--        <label class="col-sm-3 col-form-label"-->
-<!--               :for="id">{{ label }}</label>-->
-        <div class="col-12">
-            <input :class="[{'is-invalid': isInvalid},
+    <div class="form-group">
+        <label :for="id">{{ label }}</label>
+        <input :class="[{'is-invalid': isInvalid},
                   isPlainText ? 'form-control-plaintext' : 'form-control']"
-                   :type="type"
-                   :value="value"
-                   :placeholder="placeholder"
-                   :id="id"
-                   :disabled="disabled"
-                   :readonly="readonly"
-                   @input="$emit('input', $event.target.value)">
-<!--            <small class="text-muted">{{ text }}</small>-->
-            <div v-for="(error,index) in errors"
-                 :class="[{'invalid-feedback': isInvalid}]"
-                 :key="index">
-                {{ error }}
-            </div>
+               :type="type"
+               :value="value"
+               :placeholder="placeholder"
+               :id="id"
+               :disabled="disabled"
+               :readonly="readonly"
+               @input="$emit('input', $event.target.value)">
+        <small class="text-muted">{{ text }}</small>
+        <div v-for="(error,index) in errors"
+             :class="[{'invalid-feedback': isInvalid}]"
+             :key="index">
+            {{ error }}
         </div>
-<!--        <span class="col-sm-2" style="padding: 7px">{{ unit }}</span>-->
     </div>
 </template>
 

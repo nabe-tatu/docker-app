@@ -1,52 +1,67 @@
 <template>
-    <div class="container">
+    <div class="container py-3">
         <div class="row">
             <div class="col-8 mx-auto">
                 <form>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">ニックネーム</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ニックネーム">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">本名</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="本名">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">自己紹介</label>
-                        <textarea class="form-control" id="validationTextarea" placeholder="自己紹介"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">メールアドレス</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                               placeholder="メールアドレス">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">プロフィール画像</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">背景画像</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
+                    <v-input id="profile-nickname"
+                             type="text"
+                             label="ニックネーム"
+                             placeholder="ニックネーム">
 
+                    </v-input>
+                    <v-input id="profile-name"
+                             type="text"
+                             label="本名"
+                             placeholder="本名">
 
-                    <div class="form-group pt-5">
-                        <label for="exampleInputPassword1">現在のパスワード</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="現在のパスワード">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">新しいパスワード</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="新しいパスワード">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">新しいパスワード(確認)</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="新しいパスワード(確認)">
-                    </div>
+                    </v-input>
+                    <v-text-area id="profile-introduction"
+                                 type="text"
+                                 label="自己紹介"
+                                 placeholder="自己紹介">
+
+                    </v-text-area>
+                    <v-input id="profile-mail"
+                             label="メールアドレス"
+                             placeholder="メールアドレス">
+
+                    </v-input>
+                    <v-file id="profile-image"
+                            label="プロフィール画像">
+
+                    </v-file>
+                    <v-file id="profile-background-image"
+                            label="背景画像">
+
+                    </v-file>
+                    <v-input id="profile-password"
+                             type="password"
+                             :disabled=isChangePass
+                             label="パスワード"
+                             placeholder="パスワード">
+
+                    </v-input>
+                    <v-input id="profile-password-new"
+                             type="password"
+                             :disabled=isChangePass
+                             label="新しいパスワード"
+                             placeholder="新しいパスワード">
+
+                    </v-input>
+                    <v-input id="profile-password-new"
+                             type="password"
+                             :disabled=isChangePass
+                             label="新しいパスワード(確認用)"
+                             placeholder="新しいパスワード(確認用)">
+
+                    </v-input>
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">パスワードを変更する</label>
+                        <input @click="check"
+                               id="profile-checkbox"
+                               type="checkbox"
+                               class="form-check-input">
+                        <label class="form-check-label"
+                               for="profile-checkbox">パスワードを変更する</label>
                     </div>
                     <button type="submit" class="btn btn-primary float-right">変更を適用する</button>
                 </form>
@@ -56,8 +71,23 @@
 </template>
 
 <script>
+import VInput from "@/component/form/VInput";
+import VTextArea from "@/component/form/VTextArea";
+import VFile from "@/component/form/VFile";
+
 export default {
-    name: "Profile"
+    name: "Profile",
+    components: {VFile, VTextArea, VInput},
+    data: function () {
+        return {
+            isChangePass: true
+        }
+    },
+    methods: {
+        check: function () {
+            this.isChangePass = ! this.isChangePass;
+        }
+    }
 }
 </script>
 

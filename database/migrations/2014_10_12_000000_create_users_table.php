@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
 
             $table->string('screen_name')
                 ->nullable()
+                ->index('users_screen_name_index')
                 ->default('ニックネーム')
                 ->comment('表示用ニックネーム');
 
@@ -27,13 +28,15 @@ class CreateUsersTable extends Migration
                 ->default('名前')
                 ->comment('本名');
 
-            $table->string('profile')
-                ->default('プロフィール')
-                ->comment('プロフィール');
+            $table->string('introduction')
+                ->default('自己紹介を入力してください')
+                ->comment('自己紹介');
 
             $table->string('profile_image')
-                ->index('users_profile_image_index')
                 ->comment('プロフィール画像URL');
+
+            $table->string('background_image')
+                ->comment('背景画像URL');
 
             $table->string('email')
                 ->unique()

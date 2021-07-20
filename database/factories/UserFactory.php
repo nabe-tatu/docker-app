@@ -26,8 +26,9 @@ class UserFactory extends Factory
             'id' => Str::uuid(),
             'screen_name' => 'ニックネーム' . Str::random(3),
             'name' => '本名' . Str::random(3),
-            'profile' => 'プロフィール' . Str::random(30),
+            'introduction' => 'プロフィール' . Str::random(30),
             'profile_image' => Str::random(50) . '.co.jp',
+            'background_image' => Str::random(50) . '.co.jp',
             'email' => Str::random(10) . '@mail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
