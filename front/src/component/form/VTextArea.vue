@@ -5,6 +5,7 @@
                   :class="[{'is-invalid': isInvalid},'form-control']"
                   :id="id"
                   :value="value"
+                  :maxlength="maxlength"
                   :disabled="disabled"
                   :placeholder="placeholder"
                   @input="$emit('input', $event.target.value)"></textarea>
@@ -46,6 +47,11 @@ export default {
             default: ''
         },
         placeholder: {
+            type: String,
+            require: false,
+            default: ''
+        },
+        maxlength: {
             type: String,
             require: false,
             default: ''

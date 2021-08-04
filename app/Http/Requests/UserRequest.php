@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-//use Illuminate\Foundation\Http\FormRequest;
-
 class UserRequest extends Request
 {
     /**
@@ -12,7 +10,20 @@ class UserRequest extends Request
      */
     public function createRules(): array
     {
-        return [];
+        return [
+            'screen_name' => '',
+            'name' => '',
+            'introduction' => '',
+            'profile_image' => '',
+            'background_image' => '',
+            'email' => '',
+            'email_verified_at' => '',
+            'password' => '',
+            'remember_token' => '',
+            'created_at' => '',
+            'updated_at' => '',
+            'deleted_at' => ''
+        ];
     }
 
     /**
@@ -21,27 +32,19 @@ class UserRequest extends Request
      */
     public function editRules(): array
     {
-        return [];
+        return [
+            'screen_name' => '',
+            'name' => '',
+            'introduction' => '',
+            'profile_image' => '',
+            'background_image' => '',
+            'email' => '',
+            'email_verified_at' => '',
+            'password' => '',
+            'remember_token' => '',
+            'created_at' => '',
+            'updated_at' => '',
+            'deleted_at' => ''
+        ];
     }
-//    /**
-//     * Determine if the user is authorized to make this request.
-//     *
-//     * @return bool
-//     */
-//    public function authorize()
-//    {
-//        return false;
-//    }
-//
-//    /**
-//     * Get the validation rules that apply to the request.
-//     *
-//     * @return array
-//     */
-//    public function rules()
-//    {
-//        return [
-//            //
-//        ];
-//    }
 }

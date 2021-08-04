@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,16 +20,6 @@ class UserController extends Controller
 //     * @return \Illuminate\Http\Response
 //     */
 //    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
 //    {
 //        //
 //    }
@@ -55,28 +46,11 @@ class UserController extends Controller
 //        //
 //    }
 //
-//    /**
-//     * Show the form for editing the specified resource.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function edit(User $user)
-//    {
-//        //
-//    }
 //
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function update(Request $request, User $user)
-//    {
-//        //
-//    }
+    public function update(UserRequest $request, User $user)
+    {
+        return $request->all();
+    }
 //
 //    /**
 //     * Remove the specified resource from storage.

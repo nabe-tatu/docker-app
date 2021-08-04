@@ -1,7 +1,10 @@
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <input type="file" class="form-control-file" :id="id">
+        <input type="file"
+               class="form-control-file"
+               :accept="accept"
+               :id="id">
         <div v-for="(error,index) in errors"
              :class="[{'invalid-feedback': isInvalid}]"
              :key="index">
@@ -20,6 +23,11 @@ export default {
             default: ''
         },
         id: {
+            type: String,
+            require: false,
+            defaault: ''
+        },
+        accept: {
             type: String,
             require: false,
             default: ''

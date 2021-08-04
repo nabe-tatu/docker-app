@@ -3,6 +3,7 @@
         <label :for="id">{{ label }}</label>
         <input :class="[{'is-invalid': isInvalid},
                   isPlainText ? 'form-control-plaintext' : 'form-control']"
+               :maxlength="maxlength"
                :type="type"
                :value="value"
                :placeholder="placeholder"
@@ -69,6 +70,11 @@ export default {
             default: ''
         },
         text: {
+            type: String,
+            require: false,
+            default: ''
+        },
+        maxlength: {
             type: String,
             require: false,
             default: ''

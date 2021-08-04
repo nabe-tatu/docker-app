@@ -24,6 +24,12 @@ abstract class Model extends BaseModel
     protected $guarded = ['id'];
 
     /**
+     * 主キーの型指定
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * グローバル設定
      */
     public static function boot() {
