@@ -7,59 +7,62 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * ログインユーザリソース取得
+     * @param Request $request
+     * @return UserResource
+     */
+    public function loginUser(Request $request)
+    {
+        return new UserResource($request->user());
+    }
+
+    /**
+     * おすすめユーザー取得
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function recommendUsers()
     {
         return UserResource::collection(User::paginate(10));
     }
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show(User $user)
-//    {
-//        //
-//    }
-//
-//
+
+    /**
+     * ユーザー(プロフィール更新)
+     * @param UserRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(UserRequest $request, User $user)
     {
-        return $request->all();
+        try
+        {
+            $user = User::where('id', $user->id)->update([
+                "screen_name" => $request->input('screen_name'),
+                "name" => $request->input('name'),
+                "introduction" => $request->input('introduction'),
+                "profile_image" => $request->input('profile_image'),
+                "background_image" => $request->input('background_image'),
+                "email" => $request->input('email'),
+                "password" => bcrypt($request->input('password'))
+            ]);
+
+        }catch (\Exception $e)
+        {
+            logger("error occurred on update user");
+            logger("message:" . $e->getMessage());
+
+            return response()->json([
+                "message" => $e->getMessage()
+            ],400);
+        }
+
+        return response()->json([
+            "message" => "success update user",
+            "user" => $user
+        ],200);
     }
-//
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy(User $user)
-//    {
-//        //
-//    }
 }

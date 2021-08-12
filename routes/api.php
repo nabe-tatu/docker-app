@@ -17,6 +17,7 @@ use \App\Http\Controllers\Api\V1\UserController;
 */
 Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::apiResource('tweets', TweetController::class)->only(['index']);
-    Route::apiResource('users', UserController::class)->only(['update']);
+    Route::apiResource('users', UserController::class)->only(['show', 'update']);
+    Route::get('/loginUser', [UserController::class, 'loginUser']);
     Route::get('/recommendUsers', [UserController::class, 'recommendUsers']);
 });

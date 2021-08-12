@@ -11,7 +11,7 @@
                     },
                     users: host + "/api/v1/users",
                     user: function (id) {
-                        return host + "/api/v1/user/" + id;
+                        return host + "/api/v1/users/" + id;
                     },
                     recommendUsers: host + "/api/v1/recommendUsers",
                 }

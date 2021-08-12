@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import CoreuiVue from '@coreui/vue'
-import { iconsSet as icons } from './assets/icons/icons.js'
+import {iconsSet as icons} from './assets/icons/icons.js'
 import store from './store'
 // import axios from 'axios' //追記
 // import VueAxios from 'vue-axios' //追記
@@ -15,12 +15,37 @@ require("./bootstrap");
 // Vue.use(VueAxios, axios)
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  icons,
-  template: '<App/>',
-  components: {
-    App
-  }
+    el: '#app',
+    router,
+    store,
+    icons,
+    template: '<App/>',
+    components: {
+        App
+    },
+    data: function () {
+        return {
+            loginUser: null,
+        };
+    },
+    created: function () {
+        String(this.$route.path);
+        if (!(this.$route.path === "/remind/" + this.$route.path.split("/remind/").join("") ||
+            this.$route.path === "/login" ||
+            this.$route.path === "/password/reset")
+        ) {
+            this.loadAuthUserData();
+        }
+    },
+    methods: {
+        loadAuthUserData: function () {
+            window.axios.get(`${process.env.VUE_APP_API_URL}` + "/api/v1/loginUser")
+                .then(response => {
+                    this.$root.loginUser = response.data.data;
+                })
+                .catch(() => {
+                    // this.handleErrorStatusCode(error);
+                });
+        }
+    },
 })

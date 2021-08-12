@@ -10,10 +10,14 @@
       class="ml-3 d-md-down-none"
       @click="$store.commit('toggleSidebarDesktop')"
     />
-    <CHeaderBrand class="mx-auto d-lg-none" to="/">
+<!--    <CHeaderBrand class="mx-auto d-lg-none" to="/">-->
 <!--      <CIcon name="logo" height="48" alt="Logo"/>-->
-        <h1>Fine</h1>
-    </CHeaderBrand>
+
+<!--      TODO::ロゴをヘッダーの真ん中に配置したい-->
+<!--        <h1>Fine</h1>-->
+
+
+<!--    </CHeaderBrand>-->
 <!--    <CHeaderNav class="d-md-down-none mr-auto">-->
 <!--      <CHeaderNavItem class="px-3">-->
 <!--        <CHeaderNavLink to="/dashboard">-->
