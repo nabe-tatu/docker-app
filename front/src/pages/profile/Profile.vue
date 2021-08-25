@@ -2,7 +2,7 @@
     <div class="container py-3">
         <div class="row">
             <div class="col-8 mx-auto">
-                <form>
+<!--                <form>-->
                     <v-input v-model="form.screen_name"
                              id="profile-nickname"
                              type="text"
@@ -48,7 +48,7 @@
                     <v-input id="profile-password"
                              type="password"
                              maxlength="30"
-                             :disabled=isChangePass
+                             :disabled=!form.isChangePass
                              label="パスワード"
                              placeholder="パスワード">
 
@@ -56,7 +56,7 @@
                     <v-input id="profile-password-new"
                              type="password"
                              maxlength="30"
-                             :disabled=isChangePass
+                             :disabled=!form.isChangePass
                              label="新しいパスワード"
                              placeholder="新しいパスワード">
 
@@ -64,7 +64,7 @@
                     <v-input id="profile-password-new"
                              type="password"
                              maxlength="30"
-                             :disabled=isChangePass
+                             :disabled=!form.isChangePass
                              label="新しいパスワード(確認用)"
                              placeholder="新しいパスワード(確認用)">
 
@@ -83,7 +83,7 @@
                             @click="updateUser">
                         変更を適用する
                     </button>
-                </form>
+<!--                </form>-->
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@ export default {
     mixins: [ApiRouter, ErrorHandler],
     created: function () {
         //TODO::sleepじゃなくライフサイクルでなんとかならない？？
-        setTimeout(this.addToForm, 3000);
+        setTimeout(this.addToForm, 1);
     },
     data: function () {
         return {
@@ -117,9 +117,9 @@ export default {
                 // email_verified_at: '',
                 old_password: '',
                 new_password: '',
-                new_password_confirm: ''
+                new_password_confirm: '',
+                isChangePass: false
             },
-            isChangePass: true
         }
     },
     methods: {
@@ -127,7 +127,14 @@ export default {
             try
             {
                 let user = this.$root.loginUser;
+
+                console.log(user.id,'aaaaaaa');
+
                 this.id = user.id;
+
+                console.log(this.id,'bbbbbbbb');
+
+
                 this.form.screen_name = user.attributes.screen_name;
                 this.form.name = user.attributes.name;
                 this.form.introduction = user.attributes.introduction;
@@ -137,16 +144,18 @@ export default {
             }
             catch (e)
             {
-                console.log(e,'ログインユーザーデータ取得失敗');
+                this.showSuccessPopup('データ取得失敗');
             }
         },
         updateUser: function () {
             this.showIndicator('更新中');
-            this.sending = true;
+            // this.sending = true;
 
+            console.log(this.id, 1111111111111);
+            console.log(this.form, 2222222222222);
             window.axios.patch(this.routes.user(this.id), this.form)
                 .then(response => {
-                    console.log(response, 1111111111111);
+                    console.log(response, 33333333);
                     // this.$emit('person-has-updated', response.data.data);
                     this.showSuccessPopup('更新しました');
                     // this.clearErrors();
@@ -156,11 +165,11 @@ export default {
                     this.handleErrorStatusCode(error);
                 })
                 .finally(() => {
-                    this.sending = false;
+                    // this.sending = false;
                 });
         },
         check: function () {
-            this.isChangePass = !this.isChangePass;
+            this.form.isChangePass = !this.form.isChangePass;
         }
     }
 }

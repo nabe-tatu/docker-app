@@ -47,7 +47,7 @@ class UserController extends Controller
                 "profile_image" => $request->input('profile_image'),
                 "background_image" => $request->input('background_image'),
                 "email" => $request->input('email'),
-                "password" => bcrypt($request->input('password'))
+                "password" => bcrypt($request->input('new_password'))
             ]);
 
         }catch (\Exception $e)
