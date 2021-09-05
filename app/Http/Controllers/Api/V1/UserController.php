@@ -40,15 +40,23 @@ class UserController extends Controller
     {
         try
         {
-            $user = User::where('id', $user->id)->update([
-                "screen_name" => $request->input('screen_name'),
-                "name" => $request->input('name'),
-                "introduction" => $request->input('introduction'),
-                "profile_image" => $request->input('profile_image'),
-                "background_image" => $request->input('background_image'),
-                "email" => $request->input('email'),
-                "password" => bcrypt($request->input('new_password'))
+            $collect = collect([
+              "screen_name" => $request->input('screen_name'),
+              "name" => $request->input('name'),
+              "introduction" => $request->input('introduction'),
+              "profile_image" => $request->input('profile_image'),
+              "background_image" => $request->input('background_image'),
+              "email" => $request->input('email'),
             ]);
+
+            if ($request->input('isChangePass')) {
+              $collect->put(
+                'password',
+                Hash::make($request->input('new_password'))
+              );
+            }
+
+            $user->update($collect->toArray());
 
         }catch (\Exception $e)
         {

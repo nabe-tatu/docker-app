@@ -45,7 +45,8 @@
                             label="背景画像">
 
                     </v-file>
-                    <v-input id="profile-password"
+                    <v-input v-model="form.old_password"
+                             id="profile-password"
                              type="password"
                              maxlength="30"
                              :disabled=!form.isChangePass
@@ -53,7 +54,8 @@
                              placeholder="パスワード">
 
                     </v-input>
-                    <v-input id="profile-password-new"
+                    <v-input v-model="form.new_password"
+                             id="profile-password-new"
                              type="password"
                              maxlength="30"
                              :disabled=!form.isChangePass
@@ -61,7 +63,8 @@
                              placeholder="新しいパスワード">
 
                     </v-input>
-                    <v-input id="profile-password-new"
+                    <v-input v-model="form.new_password_confirmation"
+                             id="profile-password-new"
                              type="password"
                              maxlength="30"
                              :disabled=!form.isChangePass
@@ -71,6 +74,7 @@
                     </v-input>
                     <div class="form-group form-check">
                         <input @click="check"
+                               :checked=form.isChangePass
                                id="profile-checkbox"
                                type="checkbox"
                                class="form-check-input">
@@ -80,6 +84,7 @@
                         </label>
                     </div>
                     <button class="btn btn-primary float-right"
+                            :disabled=sending
                             @click="updateUser">
                         変更を適用する
                     </button>
@@ -102,7 +107,7 @@ export default {
     mixins: [ApiRouter, ErrorHandler],
     created: function () {
         //TODO::sleepじゃなくライフサイクルでなんとかならない？？
-        setTimeout(this.addToForm, 1);
+        setTimeout(this.addToForm, 2000);
     },
     data: function () {
         return {
@@ -117,9 +122,10 @@ export default {
                 // email_verified_at: '',
                 old_password: '',
                 new_password: '',
-                new_password_confirm: '',
+                new_password_confirmation: '',
                 isChangePass: false
             },
+            sending: false
         }
     },
     methods: {
@@ -128,13 +134,7 @@ export default {
             {
                 let user = this.$root.loginUser;
 
-                console.log(user.id,'aaaaaaa');
-
                 this.id = user.id;
-
-                console.log(this.id,'bbbbbbbb');
-
-
                 this.form.screen_name = user.attributes.screen_name;
                 this.form.name = user.attributes.name;
                 this.form.introduction = user.attributes.introduction;
@@ -147,25 +147,27 @@ export default {
                 this.showSuccessPopup('データ取得失敗');
             }
         },
+        resetForm: function () {
+          this.form.old_password = '',
+          this.form.new_password = '',
+          this.form.new_password_confirmation = '',
+          this.form.isChangePass = false
+        },
         updateUser: function () {
             this.showIndicator('更新中');
-            // this.sending = true;
 
-            console.log(this.id, 1111111111111);
-            console.log(this.form, 2222222222222);
+            this.sending = true;
+
             window.axios.patch(this.routes.user(this.id), this.form)
                 .then(response => {
-                    console.log(response, 33333333);
-                    // this.$emit('person-has-updated', response.data.data);
                     this.showSuccessPopup('更新しました');
-                    // this.clearErrors();
-                    this.isOpened = false;
+                    this.resetForm();
                 })
                 .catch(error => {
                     this.handleErrorStatusCode(error);
                 })
                 .finally(() => {
-                    // this.sending = false;
+                    this.sending = false;
                 });
         },
         check: function () {

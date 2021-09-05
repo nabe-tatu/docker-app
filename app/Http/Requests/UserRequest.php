@@ -20,7 +20,7 @@ class UserRequest extends Request
 //            'email_verified_at' => 'nullable|date',
             'old_password' => 'sometimes|string|max:30',
             'new_password' => 'sometimes|string|max:30',
-            'new_password_confirm' => 'sometimes|string|max:30',
+            'new_password_confirmation' => 'sometimes|string|max:30',
 //            'remember_token' => 'nullable|string|max:255',
 //            'created_at' => 'nullable|date',
 //            'updated_at' => 'nullable|date',
@@ -44,8 +44,8 @@ class UserRequest extends Request
                 'background_image' => 'sometimes|string|max:255',
                 'email' => 'required|email|max:255',
                 'old_password' => 'required|string|max:30',
-                'new_password' => 'required|string|max:30',
-                'new_password_confirm' => 'required|string|max:30',
+                'new_password' => 'required|string|max:30|confirmed',
+                'new_password_confirmation' => 'required|string|max:30',
             ];
         }else{
             return [
