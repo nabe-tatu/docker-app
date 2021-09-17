@@ -13,7 +13,7 @@ module.exports = {
   ],
 
   outputDir: '../public/app',
-  publicPath: '/app',
+  publicPath: './app',
   pages: {
       index: {
           entry: 'src/main.js',
