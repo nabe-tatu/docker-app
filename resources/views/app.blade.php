@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<!--
-* CoreUI Free - Vue.js Admin Template
-* @version 3.1.4
-* @link https://coreui.io/vue/
-* Copyright (c) 2021 creativeLabs Łukasz Holeczek
--->
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>CoreUI - Vue Open Source Bootstrap Admin Template</title>
-  <!-- favicons for all devices -->
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
-  <!-- geotagging -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CoreUI - Vue Open Source Bootstrap Admin Template</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script><script>window.dataLayer = window.dataLayer || [];
 
     function gtag() {
       dataLayer.push(arguments);
@@ -42,17 +7,4 @@
     // Shared ID
     gtag('config', 'UA-118965717-3');
     // Vue.js ID
-    gtag('config', 'UA-118965717-7');
-  </script>
-<link href="app/js/0.js" rel="prefetch"><link href="app/js/1.js" rel="prefetch"><link href="app/js/10.js" rel="prefetch"><link href="app/js/11.js" rel="prefetch"><link href="app/js/12.js" rel="prefetch"><link href="app/js/13.js" rel="prefetch"><link href="app/js/14.js" rel="prefetch"><link href="app/js/15.js" rel="prefetch"><link href="app/js/16.js" rel="prefetch"><link href="app/js/17.js" rel="prefetch"><link href="app/js/18.js" rel="prefetch"><link href="app/js/19.js" rel="prefetch"><link href="app/js/2.js" rel="prefetch"><link href="app/js/20.js" rel="prefetch"><link href="app/js/21.js" rel="prefetch"><link href="app/js/22.js" rel="prefetch"><link href="app/js/23.js" rel="prefetch"><link href="app/js/24.js" rel="prefetch"><link href="app/js/25.js" rel="prefetch"><link href="app/js/26.js" rel="prefetch"><link href="app/js/27.js" rel="prefetch"><link href="app/js/28.js" rel="prefetch"><link href="app/js/29.js" rel="prefetch"><link href="app/js/3.js" rel="prefetch"><link href="app/js/30.js" rel="prefetch"><link href="app/js/31.js" rel="prefetch"><link href="app/js/32.js" rel="prefetch"><link href="app/js/33.js" rel="prefetch"><link href="app/js/34.js" rel="prefetch"><link href="app/js/35.js" rel="prefetch"><link href="app/js/36.js" rel="prefetch"><link href="app/js/37.js" rel="prefetch"><link href="app/js/38.js" rel="prefetch"><link href="app/js/39.js" rel="prefetch"><link href="app/js/4.js" rel="prefetch"><link href="app/js/5.js" rel="prefetch"><link href="app/js/6.js" rel="prefetch"><link href="app/js/7.js" rel="prefetch"><link href="app/js/8.js" rel="prefetch"><link href="app/js/9.js" rel="prefetch"><link href="app/js/chunk-vendors.js" rel="preload" as="script"><link href="app/js/index.js" rel="preload" as="script"></head>
-
-<body>
-  <noscript>
-    <strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to
-      continue.</strong>
-  </noscript>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-<script type="text/javascript" src="app/js/chunk-vendors.js"></script><script type="text/javascript" src="app/js/index.js"></script></body>
-
-</html>
+    gtag('config', 'UA-118965717-7');</script><link href="./app/css/chunk-32f6b925.c189a3a5.css" rel="prefetch"><link href="./app/css/chunk-35afbb66.96e60c15.css" rel="prefetch"><link href="./app/css/chunk-7a0cb226.7a70e28c.css" rel="prefetch"><link href="./app/css/chunk-b88b05a4.96e60c15.css" rel="prefetch"><link href="./app/css/chunk-ee31aa70.58185a0b.css" rel="prefetch"><link href="./app/js/chunk-0321a722.00121bf5.js" rel="prefetch"><link href="./app/js/chunk-0a6323ae.c0b12fc1.js" rel="prefetch"><link href="./app/js/chunk-28d6db65.bdc1fe2d.js" rel="prefetch"><link href="./app/js/chunk-2d0a400c.23a7ffec.js" rel="prefetch"><link href="./app/js/chunk-2d0a443e.d8030f9b.js" rel="prefetch"><link href="./app/js/chunk-2d0aa9f0.247dfea9.js" rel="prefetch"><link href="./app/js/chunk-2d0aab88.b89fcf3e.js" rel="prefetch"><link href="./app/js/chunk-2d0ab2eb.df2303ac.js" rel="prefetch"><link href="./app/js/chunk-2d0ae5e6.5fa7f211.js" rel="prefetch"><link href="./app/js/chunk-2d0ae943.d0d71d2c.js" rel="prefetch"><link href="./app/js/chunk-2d0b1bf6.10fe71ba.js" rel="prefetch"><link href="./app/js/chunk-2d0b59e9.8b02975a.js" rel="prefetch"><link href="./app/js/chunk-2d0c4303.4fbd80e8.js" rel="prefetch"><link href="./app/js/chunk-2d0c8ff5.6bb3ef59.js" rel="prefetch"><link href="./app/js/chunk-2d0d3e27.c249d24f.js" rel="prefetch"><link href="./app/js/chunk-2d0de2d9.ab071f44.js" rel="prefetch"><link href="./app/js/chunk-2d0de6aa.faddb5eb.js" rel="prefetch"><link href="./app/js/chunk-2d0e8c24.90515675.js" rel="prefetch"><link href="./app/js/chunk-2d0f06bd.ac57ff56.js" rel="prefetch"><link href="./app/js/chunk-2d0f0c1b.5903235e.js" rel="prefetch"><link href="./app/js/chunk-2d208124.7043b8c6.js" rel="prefetch"><link href="./app/js/chunk-2d2131a8.b35ce815.js" rel="prefetch"><link href="./app/js/chunk-2d21444c.121f171c.js" rel="prefetch"><link href="./app/js/chunk-2d216de3.fa3d55fc.js" rel="prefetch"><link href="./app/js/chunk-2d2183eb.a4b463c4.js" rel="prefetch"><link href="./app/js/chunk-2d21eae7.9b4f2aba.js" rel="prefetch"><link href="./app/js/chunk-2d222779.01439eb4.js" rel="prefetch"><link href="./app/js/chunk-2d226319.8018c3fb.js" rel="prefetch"><link href="./app/js/chunk-2d22885b.e9849dfa.js" rel="prefetch"><link href="./app/js/chunk-2d22c303.0b509379.js" rel="prefetch"><link href="./app/js/chunk-2d22d610.f8c16926.js" rel="prefetch"><link href="./app/js/chunk-2d23777b.281c055d.js" rel="prefetch"><link href="./app/js/chunk-2d237b34.aec13129.js" rel="prefetch"><link href="./app/js/chunk-32f6b925.f9ba8a82.js" rel="prefetch"><link href="./app/js/chunk-35afbb66.83b2b69e.js" rel="prefetch"><link href="./app/js/chunk-38e6ca0c.3c33b2f4.js" rel="prefetch"><link href="./app/js/chunk-7a0cb226.dc2ba478.js" rel="prefetch"><link href="./app/js/chunk-b88b05a4.aa3ff8be.js" rel="prefetch"><link href="./app/js/chunk-ee31aa70.0661c559.js" rel="prefetch"><link href="./app/css/index.10fee0d6.css" rel="preload" as="style"><link href="./app/js/chunk-vendors.ff6f5301.js" rel="preload" as="script"><link href="./app/js/index.07595fe3.js" rel="preload" as="script"><link href="./app/css/index.10fee0d6.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="./app/js/chunk-vendors.ff6f5301.js"></script><script src="./app/js/index.07595fe3.js"></script></body></html>
