@@ -60,7 +60,7 @@ const User = () => import('@/views/users/User')
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history', // https://router.vuejs.org/api/#mode
+  mode: 'hash', // https://router.vuejs.org/api/#mode
   base: process.env.VUE_APP_API_URL,
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
