@@ -26,6 +26,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
@@ -43,7 +44,7 @@
     // Vue.js ID
     gtag('config', 'UA-118965717-7');
   </script>
-<link href="/../app/js/0.js" rel="prefetch"><link href="/../app/js/1.js" rel="prefetch"><link href="/../app/js/10.js" rel="prefetch"><link href="/../app/js/11.js" rel="prefetch"><link href="/../app/js/12.js" rel="prefetch"><link href="/../app/js/13.js" rel="prefetch"><link href="/../app/js/14.js" rel="prefetch"><link href="/../app/js/15.js" rel="prefetch"><link href="/../app/js/16.js" rel="prefetch"><link href="/../app/js/17.js" rel="prefetch"><link href="/../app/js/18.js" rel="prefetch"><link href="/../app/js/19.js" rel="prefetch"><link href="/../app/js/2.js" rel="prefetch"><link href="/../app/js/20.js" rel="prefetch"><link href="/../app/js/21.js" rel="prefetch"><link href="/../app/js/22.js" rel="prefetch"><link href="/../app/js/23.js" rel="prefetch"><link href="/../app/js/24.js" rel="prefetch"><link href="/../app/js/25.js" rel="prefetch"><link href="/../app/js/26.js" rel="prefetch"><link href="/../app/js/27.js" rel="prefetch"><link href="/../app/js/28.js" rel="prefetch"><link href="/../app/js/29.js" rel="prefetch"><link href="/../app/js/3.js" rel="prefetch"><link href="/../app/js/30.js" rel="prefetch"><link href="/../app/js/31.js" rel="prefetch"><link href="/../app/js/32.js" rel="prefetch"><link href="/../app/js/33.js" rel="prefetch"><link href="/../app/js/34.js" rel="prefetch"><link href="/../app/js/35.js" rel="prefetch"><link href="/../app/js/36.js" rel="prefetch"><link href="/../app/js/37.js" rel="prefetch"><link href="/../app/js/38.js" rel="prefetch"><link href="/../app/js/39.js" rel="prefetch"><link href="/../app/js/4.js" rel="prefetch"><link href="/../app/js/5.js" rel="prefetch"><link href="/../app/js/6.js" rel="prefetch"><link href="/../app/js/7.js" rel="prefetch"><link href="/../app/js/8.js" rel="prefetch"><link href="/../app/js/9.js" rel="prefetch"><link href="/../app/js/chunk-vendors.js" rel="preload" as="script"><link href="/../app/js/index.js" rel="preload" as="script"></head>
+<link href="/app/js/0.js" rel="prefetch"><link href="/app/js/1.js" rel="prefetch"><link href="/app/js/10.js" rel="prefetch"><link href="/app/js/11.js" rel="prefetch"><link href="/app/js/12.js" rel="prefetch"><link href="/app/js/13.js" rel="prefetch"><link href="/app/js/14.js" rel="prefetch"><link href="/app/js/15.js" rel="prefetch"><link href="/app/js/16.js" rel="prefetch"><link href="/app/js/17.js" rel="prefetch"><link href="/app/js/18.js" rel="prefetch"><link href="/app/js/19.js" rel="prefetch"><link href="/app/js/2.js" rel="prefetch"><link href="/app/js/20.js" rel="prefetch"><link href="/app/js/21.js" rel="prefetch"><link href="/app/js/22.js" rel="prefetch"><link href="/app/js/23.js" rel="prefetch"><link href="/app/js/24.js" rel="prefetch"><link href="/app/js/25.js" rel="prefetch"><link href="/app/js/26.js" rel="prefetch"><link href="/app/js/27.js" rel="prefetch"><link href="/app/js/28.js" rel="prefetch"><link href="/app/js/29.js" rel="prefetch"><link href="/app/js/3.js" rel="prefetch"><link href="/app/js/30.js" rel="prefetch"><link href="/app/js/31.js" rel="prefetch"><link href="/app/js/32.js" rel="prefetch"><link href="/app/js/33.js" rel="prefetch"><link href="/app/js/34.js" rel="prefetch"><link href="/app/js/35.js" rel="prefetch"><link href="/app/js/36.js" rel="prefetch"><link href="/app/js/37.js" rel="prefetch"><link href="/app/js/38.js" rel="prefetch"><link href="/app/js/39.js" rel="prefetch"><link href="/app/js/4.js" rel="prefetch"><link href="/app/js/5.js" rel="prefetch"><link href="/app/js/6.js" rel="prefetch"><link href="/app/js/7.js" rel="prefetch"><link href="/app/js/8.js" rel="prefetch"><link href="/app/js/9.js" rel="prefetch"><link href="/app/js/chunk-vendors.js" rel="preload" as="script"><link href="/app/js/index.js" rel="preload" as="script"></head>
 
 <body>
   <noscript>
@@ -52,6 +53,6 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
-<script type="text/javascript" src="/../app/js/chunk-vendors.js"></script><script type="text/javascript" src="/../app/js/index.js"></script></body>
+<script type="text/javascript" src="./app/js/chunk-vendors.js"></script><script type="text/javascript" src="./app/js/index.js"></script></body>
 
 </html>
