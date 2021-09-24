@@ -60,13 +60,15 @@ const User = () => import('@/views/users/User')
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash', // https://router.vuejs.org/api/#mode
+  // mode: 'history', // https://router.vuejs.org/api/#mode
+  base: process.env.VUE_APP_API_URL,
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
 })
 
 function configRoutes () {
+    window.console.log(process.env.VUE_APP_API_URL,1111111111);
   return [
     {
       path: '/',
