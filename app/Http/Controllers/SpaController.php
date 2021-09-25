@@ -8,13 +8,13 @@ use Illuminate\Contracts\View\View;
 
 class SpaController extends Controller
 {
-    /**
-     * auth middleware通す
-     * SpaController constructor.
-     */
-    public function __construct(){
-        $this->middleware('auth');
-    }
+//    /**
+//     * auth middleware通す
+//     * SpaController constructor.
+//     */
+//    public function __construct(){
+//        $this->middleware('auth');
+//    }
 
     /**
      * SPA
