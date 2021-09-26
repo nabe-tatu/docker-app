@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d2089de"],{a60c:function(n,e,c){"use strict";c.r(e);var t=function(){var n=this,e=n.$createElement,c=n._self._c||e;return c("div",[n._v(" 問い合わせ ")])},a=[],u={name:"Contact"},o=u,r=c("2877"),s=Object(r["a"])(o,t,a,!1,null,"03b5c48c",null);e["default"]=s.exports}}]);
+//# sourceMappingURL=chunk-2d2089de.1d10f6bb.js.map
