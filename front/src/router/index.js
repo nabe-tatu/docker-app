@@ -70,7 +70,6 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    base: process.env.VUE_APP_API_URL,
     // mode: 'hash', // https://router.vuejs.org/api/#mode
     linkActiveClass: 'active',
     scrollBehavior: () => ({y: 0}),
