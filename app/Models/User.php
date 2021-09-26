@@ -13,6 +13,18 @@ class User extends AuthModel
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * 主キーのインクリメントしない
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * 主キーuuidなので、stringを明示的に指定(デフォルトでintにキャストするらしい、、)
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * ブラックリスト、カラム指定
      * @var array
      */
