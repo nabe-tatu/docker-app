@@ -13,15 +13,18 @@ class User extends AuthModel
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
+     * ブラックリスト、カラム指定
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+
     ];
+
+//    /**
+//     * ホワイトリスト
+//     * @var array
+//     */
+//    protected $fillable = [];
 
     /**
      * The attributes that should be hidden for arrays.

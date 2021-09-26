@@ -148,10 +148,10 @@ export default {
             }
         },
         resetForm: function () {
-          this.form.old_password = '',
-          this.form.new_password = '',
-          this.form.new_password_confirmation = '',
-          this.form.isChangePass = false
+          this.form.old_password = '';
+          this.form.new_password = '';
+          this.form.new_password_confirmation = '';
+          this.form.isChangePass = false;
         },
         updateUser: function () {
             this.showIndicator('更新中');
