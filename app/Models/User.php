@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-//use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
@@ -17,12 +15,6 @@ class User extends AuthModel
      * @var bool
      */
     public $incrementing = false;
-
-    /**
-     * 主キーuuidなので、stringを明示的に指定(デフォルトでintにキャストするらしい、、)
-     * @var string
-     */
-    protected $keyType = 'string';
 
     /**
      * ブラックリスト、カラム指定
