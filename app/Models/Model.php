@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 abstract class Model extends BaseModel
@@ -56,5 +58,20 @@ abstract class Model extends BaseModel
     public function reload($with = [])
     {
         return static::whereId($this->id)->with($with)->first();
+    }
+
+    /**
+     * TODO::理解する、もっといい方法、復号化は？、他の暗号化ロジック
+     * パスワードをハッシュ下して保存
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    public function setAttribute($key, $value)
+    {
+        if (in_array($key, $this->encryptable)) {
+            $value = Hash::make($value);
+        }
+        return parent::setAttribute($key, $value);
     }
 }

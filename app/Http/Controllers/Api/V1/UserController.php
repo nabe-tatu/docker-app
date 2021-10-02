@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exceptions\UpdateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,43 +36,11 @@ class UserController extends Controller
      * ユーザー(プロフィール更新)
      * @param UserRequest $request
      * @param User $user
-     * @return \Illuminate\Http\JsonResponse
+     * @param UserService $userService
+     * @return UserResource|\Illuminate\Http\JsonResponse
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UserRequest $request, User $user, UserService $userService)
     {
-        try
-        {
-            $collect = collect([
-              "screen_name" => $request->input('screen_name'),
-              "name" => $request->input('name'),
-              "introduction" => $request->input('introduction'),
-              "profile_image" => $request->input('profile_image'),
-              "background_image" => $request->input('background_image'),
-              "email" => $request->input('email'),
-            ]);
-
-            if ($request->input('isChangePass')) {
-              $collect->put(
-                'password',
-                Hash::make($request->input('new_password'))
-              );
-            }
-
-            $user->update($collect->toArray());
-
-        }catch (\Exception $e)
-        {
-            logger("error occurred on update user");
-            logger("message:" . $e->getMessage());
-
-            return response()->json([
-                "message" => $e->getMessage()
-            ],400);
-        }
-
-        return response()->json([
-            "message" => "success update user",
-            "user" => $user
-        ],200);
+        return $userService->update($request, $user);
     }
 }

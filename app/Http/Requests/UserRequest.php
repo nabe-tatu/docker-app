@@ -13,8 +13,8 @@ class UserRequest extends Request
         return [
             'screen_name' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'introduction' => 'required|string|max:255',
-            'profile_image' => 'sometimes|string|max:255',
+            'introduction' => 'required||string|max:255',
+            'profile_image' => 'sometimes|image',
             'background_image' => 'sometimes|string|max:255',
             'email' => 'required|email|max:255',
 //            'email_verified_at' => 'nullable|date',
@@ -34,28 +34,36 @@ class UserRequest extends Request
      */
     public function editRules(): array
     {
+        $validation = [
+            'screen_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'introduction' => 'required||string|max:255',
+            'email' => 'required|email|max:255',
+        ];
+
         if ($this->input('isChangePass'))
         {
-            return [
-                'screen_name' => 'required|string|max:255',
-                'name' => 'required|string|max:255',
-                'introduction' => 'required|string|max:255',
-                'profile_image' => 'sometimes|string|max:255',
-                'background_image' => 'sometimes|string|max:255',
-                'email' => 'required|email|max:255',
+            $validation = array_merge($validation,[
                 'old_password' => 'required|string|max:30',
                 'new_password' => 'required|string|max:30|confirmed',
                 'new_password_confirmation' => 'required|string|max:30',
-            ];
-        }else{
-            return [
-                'screen_name' => 'required|string|max:255',
-                'name' => 'required|string|max:255',
-                'introduction' => 'required|string|max:255',
-                'profile_image' => 'sometimes|string|max:255',
-                'background_image' => 'sometimes|string|max:255',
-                'email' => 'required|email|max:255',
-            ];
+            ]);
         }
+
+        if ($this->file('profile_image'))
+        {
+            $validation = array_merge($validation,[
+                'profile_image' => 'required|image'
+            ]);
+        }
+
+        if ($this->file('background_image'))
+        {
+            $validation = array_merge($validation,[
+                'background_image' => 'required|image'
+            ]);
+        }
+
+        return $validation;
     }
 }

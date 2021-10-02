@@ -30,13 +30,17 @@ class User extends AuthModel
 //     */
 //    protected $fillable = [];
 
+    public $encryptable = [
+        'password',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password',
+//        'password',
         'remember_token',
     ];
 
