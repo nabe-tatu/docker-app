@@ -39,13 +39,41 @@ class UserService
                 }
             )
             ->when(
-                $request->file('profile_image'),
+                $request->file('profile_image_file'),
                 function ($collection) use($request, $user) {
-//                    $this->storeS3(
-//                        $this->makePath('user/profile/', $user, $request),
-//                        $request->file('profile_image')
-//                    );
-                    return $collection->put('profile_image', $request->file('profile_image'));
+
+                    $path = '/user/profile/' . $user->id;
+
+                    Storage::disk('s3')->deleteDirectory($path);
+
+                    $path = $this->storeS3(
+                        $path,
+                        $request->file('profile_image_file')
+                    );
+
+                    return $collection->put(
+                        'profile_image',
+                        config('api.s3.domain') . $path
+                    );
+                }
+            )
+            ->when(
+                $request->file('background_image_file'),
+                function ($collection) use($request, $user) {
+
+                    $path = '/user/background/' . $user->id;
+
+                    Storage::disk('s3')->deleteDirectory($path);
+
+                    $path = $this->storeS3(
+                        $path,
+                        $request->file('background_image_file')
+                    );
+
+                    return $collection->put(
+                        'background_image',
+                        config('api.s3.domain') . $path
+                    );
                 }
             )
             ->toArray();
@@ -59,17 +87,6 @@ class UserService
      */
     private function storeS3(string $path, $file)
     {
-        Storage::put($path, $file);
-    }
-
-    /**
-     * @param string $path
-     * @param $user
-     * @param $request
-     * @return string
-     */
-    private function makePath(string $path, $user, $request): string
-    {
-        return config('api.s3.domain') . $path . $user->id . '/' . $request->file('profile_image')->getClientOriginalName();
+        return Storage::disk('s3')->put($path, $file);
     }
 }

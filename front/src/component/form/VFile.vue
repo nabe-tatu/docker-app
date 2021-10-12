@@ -1,10 +1,17 @@
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
+        <p>
+            <img :src=url
+                 :alt=alt
+                 class="img-thumbnail"
+                 style="max-height: 100px; max-width: 100px">
+        </p>
         <input type="file"
                class="form-control-file"
                :accept="accept"
-               :id="id">
+               :id="id"
+               @change="$emit('file', $event.target.files[0])">
         <div v-for="(error,index) in errors"
              :class="[{'invalid-feedback': isInvalid}]"
              :key="index">
@@ -22,10 +29,20 @@ export default {
             require: false,
             default: ''
         },
+        url: {
+            type: String,
+            require: false,
+            default: ''
+        },
+        alt: {
+            type: String,
+            require: false,
+            default: ''
+        },
         id: {
             type: String,
             require: false,
-            defaault: ''
+            default: ''
         },
         accept: {
             type: String,

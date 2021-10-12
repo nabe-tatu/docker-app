@@ -14,8 +14,10 @@ class UserRequest extends Request
             'screen_name' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'introduction' => 'required||string|max:255',
-            'profile_image' => 'sometimes|image',
-            'background_image' => 'sometimes|string|max:255',
+//            'profile_image' => 'sometimes|image',
+//            'background_image' => 'sometimes|string|max:255',
+            'profile_image_file' => 'sometimes|image',
+            'background_image_file' => 'sometimes|image',
             'email' => 'required|email|max:255',
 //            'email_verified_at' => 'nullable|date',
             'old_password' => 'sometimes|string|max:30',
@@ -34,6 +36,7 @@ class UserRequest extends Request
      */
     public function editRules(): array
     {
+//        var_dump($this->all());
         $validation = [
             'screen_name' => 'required|string|max:255',
             'name' => 'required|string|max:255',
@@ -53,14 +56,14 @@ class UserRequest extends Request
         if ($this->file('profile_image'))
         {
             $validation = array_merge($validation,[
-                'profile_image' => 'required|image'
+                'profile_image_file' => 'required|image'
             ]);
         }
 
         if ($this->file('background_image'))
         {
             $validation = array_merge($validation,[
-                'background_image' => 'required|image'
+                'background_image_file' => 'required|image'
             ]);
         }
 

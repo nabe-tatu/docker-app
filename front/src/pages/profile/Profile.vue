@@ -37,13 +37,17 @@
                     </v-input>
                     <v-file id="profile-image"
                             accept="image/*"
-                            label="プロフィール画像">
-
+                            label="プロフィール画像"
+                            alt="no image"
+                            @file="profileImage"
+                            :url="form.profile_image">
                     </v-file>
                     <v-file id="profile-background-image"
                             accept="image/*"
-                            label="背景画像">
-
+                            label="背景画像"
+                            alt="no image"
+                            @file="backgroundImage"
+                            :url="form.background_image">
                     </v-file>
                     <v-input v-model="form.old_password"
                              id="profile-password"
@@ -118,6 +122,8 @@ export default {
                 introduction: '',
                 profile_image: '',
                 background_image: '',
+                profile_image_file: '',
+                background_image_file: '',
                 email: '',
                 // email_verified_at: '',
                 old_password: '',
@@ -156,9 +162,13 @@ export default {
         updateUser: function () {
             this.showIndicator('更新中');
 
-            this.sending = true;
+            this.sendingTrue();
 
-            window.axios.patch(this.routes.user(this.id), this.form)
+            window.axios.post(
+                this.routes.user(this.id),
+                this.userFormData(),
+                this.userConfig()
+            )
                 .then(response => {
                     this.showSuccessPopup('更新しました');
                     this.resetForm();
@@ -167,12 +177,48 @@ export default {
                     this.handleErrorStatusCode(error);
                 })
                 .finally(() => {
-                    this.sending = false;
+                    this.sendingFalse();
                 });
         },
         check: function () {
-            this.form.isChangePass = !this.form.isChangePass;
-        }
+            this.form.isChangePass = ! this.form.isChangePass;
+        },
+        profileImage: function (img) {
+            this.form.profile_image_file = img;
+        },
+        backgroundImage: function (img) {
+            this.form.background_image_file = img;
+        },
+        userFormData: function () {
+            const formData = new FormData()
+
+            formData.append('_method', 'PATCH');
+            formData.append('screen_name',this.form.screen_name);
+            formData.append('name',this.form.name);
+            formData.append('introduction',this.form.introduction);
+            formData.append('email',this.form.email);
+            formData.append('profile_image_file',this.form.profile_image_file);
+            formData.append('background_image_file',this.form.background_image_file);
+            formData.append('old_password',this.form.old_password);
+            formData.append('new_password',this.form.new_password);
+            formData.append('new_password_confirmation',this.form.new_password_confirmation);
+            formData.append('isChangePass',Number(this.form.isChangePass));
+
+            return formData;
+        },
+        userConfig: function () {
+            return {
+                headers: {
+                    'content-type': 'multipart/form-data',
+                }
+            };
+        },
+        sendingTrue: function () {
+            this.sending = true;
+        },
+        sendingFalse: function () {
+            this.sending = false;
+        },
     }
 }
 </script>
