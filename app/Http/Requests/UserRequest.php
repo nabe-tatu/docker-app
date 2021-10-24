@@ -53,14 +53,28 @@ class UserRequest extends Request
             ]);
         }
 
-        if ($this->file('profile_image'))
+        if ($this->input('isDeleteProfileImg'))
+        {
+            $validation = array_merge($validation,[
+                'profile_image_file' => 'nullable|image'
+            ]);
+        }
+
+        if ($this->input('isDeleteBackgroundImg'))
+        {
+            $validation = array_merge($validation,[
+                'background_image_file' => 'nullable|image'
+            ]);
+        }
+
+        if ($this->file('profile_image_file'))
         {
             $validation = array_merge($validation,[
                 'profile_image_file' => 'required|image'
             ]);
         }
 
-        if ($this->file('background_image'))
+        if ($this->file('background_image_file'))
         {
             $validation = array_merge($validation,[
                 'background_image_file' => 'required|image'

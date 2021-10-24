@@ -31,11 +31,45 @@ class UserService
     public function update(Request $request, User $user)
     {
         $data = $request
-            ->formDataCollection(['new_password','old_password', 'new_password_confirmation'])
+            ->formDataCollection([
+                'new_password',
+                'old_password',
+                'new_password_confirmation',
+                'profile_image_file',
+                'background_image_file'
+            ])
             ->when(
                 $request->input('new_password'),
                 function ($collection) use($request) {
                     return $collection->put('password', $request->input('new_password'));
+                }
+            )
+            ->when(
+                $request->input('isDeleteProfileImg'),
+                function ($collection) use($request, $user) {
+
+                    $path = '/user/profile/' . $user->id;
+
+                    Storage::disk('s3')->deleteDirectory($path);
+
+                    return $collection->put(
+                        'profile_image',
+                        null
+                    );
+                }
+            )
+            ->when(
+                $request->input('isDeleteBackgroundImg'),
+                function ($collection) use($request, $user) {
+
+                    $path = '/user/background/' . $user->id;
+
+                    Storage::disk('s3')->deleteDirectory($path);
+
+                    return $collection->put(
+                        'background_image',
+                        null
+                    );
                 }
             )
             ->when(

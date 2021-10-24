@@ -1,17 +1,15 @@
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <p>
-            <img :src=url
-                 :alt=alt
-                 class="img-thumbnail"
-                 style="max-height: 100px; max-width: 100px">
-        </p>
+        <div>
+            <slot name="img"></slot>
+            <slot name="btn"></slot>
+        </div>
         <input type="file"
-               class="form-control-file"
+               class="form-control-file pt-2"
                :accept="accept"
                :id="id"
-               @change="$emit('file', $event.target.files[0])">
+               @change=changeFile($event.target.files[0])>
         <div v-for="(error,index) in errors"
              :class="[{'invalid-feedback': isInvalid}]"
              :key="index">
@@ -25,16 +23,6 @@ export default {
     name: "VFile",
     props: {
         label: {
-            type: String,
-            require: false,
-            default: ''
-        },
-        url: {
-            type: String,
-            require: false,
-            default: ''
-        },
-        alt: {
             type: String,
             require: false,
             default: ''
@@ -54,6 +42,11 @@ export default {
             require: true,
             default: () => ([])
         },
+    },
+    methods: {
+        changeFile: function (file) {
+            this.$emit('file', file);
+        }
     },
     computed: {
         isInvalid: function () {
