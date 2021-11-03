@@ -193,6 +193,7 @@ export default {
                 .then(response => {
                     this.showSuccessPopup('更新しました');
                     this.resetForm();
+                    this.clearErrors();
                 })
                 .catch(error => {
                     this.handleErrorStatusCode(error);
@@ -218,6 +219,8 @@ export default {
         resetForm: function () {
             this.clearPass();
             this.form.isChangePass = false;
+            this.form.isDeleteBackgroundImg = false;
+            this.form.isDeleteProfileImg = false;
         },
         clearPass: function () {
             this.form.old_password = '';
@@ -233,7 +236,7 @@ export default {
             this['form'][attr2] = URL.createObjectURL(file);
         },
         userFormData: function () {
-            const formData = new FormData()
+            const formData = new FormData();
             formData.append('_method', 'PATCH');
             formData.append('screen_name',this.form.screen_name);
             formData.append('name',this.form.name);
@@ -241,8 +244,8 @@ export default {
             formData.append('email',this.form.email);
             formData.append('profile_image_file',this.form.profile_image_file);
             formData.append('background_image_file',this.form.background_image_file);
-            formData.append('isDeleteProfileImg',this.form.isDeleteProfileImg);
-            formData.append('isDeleteBackgroundImg',this.form.isDeleteBackgroundImg);
+            formData.append('isDeleteProfileImg',Number(this.form.isDeleteProfileImg));
+            formData.append('isDeleteBackgroundImg',Number(this.form.isDeleteBackgroundImg));
             formData.append('old_password',this.form.old_password);
             formData.append('new_password',this.form.new_password);
             formData.append('new_password_confirmation',this.form.new_password_confirmation);

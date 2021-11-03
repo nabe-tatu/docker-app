@@ -36,7 +36,9 @@ class UserService
                 'old_password',
                 'new_password_confirmation',
                 'profile_image_file',
-                'background_image_file'
+                'profile_image_url',
+                'background_image_file',
+                'background_image_url'
             ])
             ->when(
                 $request->input('new_password'),
@@ -118,6 +120,7 @@ class UserService
     /**
      * @param string $path
      * @param $file
+     * @return bool
      */
     private function storeS3(string $path, $file)
     {

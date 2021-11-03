@@ -36,7 +36,6 @@ class UserRequest extends Request
      */
     public function editRules(): array
     {
-//        var_dump($this->all());
         $validation = [
             'screen_name' => 'required|string|max:255',
             'name' => 'required|string|max:255',
@@ -47,7 +46,8 @@ class UserRequest extends Request
         if ($this->input('isChangePass'))
         {
             $validation = array_merge($validation,[
-                'old_password' => 'required|string|max:30',
+                //TODO::password→current_passwordに変更になるそうです laravel8.47 9.X以降はcurrent_passwordです
+                'old_password' => 'required|string|max:30|password',
                 'new_password' => 'required|string|max:30|confirmed',
                 'new_password_confirmation' => 'required|string|max:30',
             ]);
