@@ -23,6 +23,25 @@ class UserService
     }
 
     /**
+     * @param Request $request
+     * @return UserResource|string
+     */
+    public function store(Request $request)
+    {
+        $user = $this->userRepository->store(
+            $request
+                ->formDataCollection([
+                    'profile_image_file',
+                    'background_image_file',
+                    'password_confirmation'
+                ])
+                ->toArray()
+        );
+
+        return new UserResource($user);
+    }
+
+    /**
      * ユーザー(プロフィール更新)
      * @param Request $request
      * @param User $user
@@ -82,7 +101,7 @@ class UserService
 
                     Storage::disk('s3')->deleteDirectory($path);
 
-                    $path = $this->storeS3(
+                    $path = $this->putS3(
                         $path,
                         $request->file('profile_image_file')
                     );
@@ -101,7 +120,7 @@ class UserService
 
                     Storage::disk('s3')->deleteDirectory($path);
 
-                    $path = $this->storeS3(
+                    $path = $this->putS3(
                         $path,
                         $request->file('background_image_file')
                     );
@@ -117,12 +136,42 @@ class UserService
         return new UserResource($this->userRepository->update($user, $data));
     }
 
+    private function storeS3($user)
+    {
+        $collection = collect($user);
+
+        $profilePath = '/user/profile/' . $user->id;
+        $backgroundPath = '/user/background/' . $user->id;
+
+        $profilePath = $this->putS3(
+            $profilePath,
+            request()->file('profile_image_file')
+        );
+
+        $backgroundPath = $this->putS3(
+            $backgroundPath,
+            request()->file('background_image_file')
+        );
+
+        $collection = $collection->put(
+            'profile_image',
+            config('api.s3.domain') . $profilePath
+        );
+
+        $collection = $collection->put(
+            'background_image',
+            config('api.s3.domain') . $backgroundPath
+        );
+
+        return $collection;
+    }
+
     /**
      * @param string $path
      * @param $file
      * @return bool
      */
-    private function storeS3(string $path, $file)
+    private function putS3(string $path, $file)
     {
         return Storage::disk('s3')->put($path, $file);
     }

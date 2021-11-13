@@ -11,22 +11,16 @@ class UserRequest extends Request
     public function createRules(): array
     {
         return [
-            'screen_name' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'introduction' => 'required||string|max:255',
-//            'profile_image' => 'sometimes|image',
-//            'background_image' => 'sometimes|string|max:255',
-            'profile_image_file' => 'sometimes|image',
-            'background_image_file' => 'sometimes|image',
-            'email' => 'required|email|max:255',
-//            'email_verified_at' => 'nullable|date',
-            'old_password' => 'sometimes|string|max:30',
-            'new_password' => 'sometimes|string|max:30',
-            'new_password_confirmation' => 'sometimes|string|max:30',
-//            'remember_token' => 'nullable|string|max:255',
-//            'created_at' => 'nullable|date',
-//            'updated_at' => 'nullable|date',
-//            'deleted_at' => 'nullable|date'
+//            'screen_name' => 'required|string|max:255',
+//            'name' => 'required|string|max:255',
+//            'introduction' => 'required||string|max:255',
+
+//            'profile_image_file' => 'nullable|image',
+//            'background_image_file' => 'nullable|image',
+
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|string|max:30|confirmed',
+            'password_confirmation' => 'required|string|max:30'
         ];
     }
 
@@ -40,6 +34,7 @@ class UserRequest extends Request
             'screen_name' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'introduction' => 'required||string|max:255',
+            //TODO::uniqueにしないと
             'email' => 'required|email|max:255',
         ];
 

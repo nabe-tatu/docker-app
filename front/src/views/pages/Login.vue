@@ -7,11 +7,11 @@
                         <CCard class="p-4">
                             <CCardBody>
                                 <CForm>
-                                    <h1>Login</h1>
-                                    <p class="text-muted">Sign In to your account</p>
+                                    <h1>Fine</h1>
+<!--                                    <p class="text-muted">Sign In to your account</p>-->
                                     <CInput
                                         v-model="form.email"
-                                        placeholder="Username"
+                                        placeholder="メールアドレス"
                                         autocomplete="username email">
                                         <template #prepend-content>
                                             <CIcon name="cil-user"/>
@@ -19,7 +19,7 @@
                                     </CInput>
                                     <CInput
                                         v-model="form.password"
-                                        placeholder="Password"
+                                        placeholder="パスワード"
                                         type="password"
                                         autocomplete="curent-password">
                                         <template #prepend-content>
@@ -28,11 +28,18 @@
                                     </CInput>
                                     <CRow>
                                         <CCol col="6" class="text-left">
-                                            <CButton color="primary" class="px-4" @click="login">Login</CButton>
+                                            <CButton color="primary" class="px-4" @click="login">ログイン</CButton>
                                         </CCol>
                                         <CCol col="6" class="text-right">
-                                            <CButton color="link" class="px-0">Forgot password?</CButton>
-                                            <CButton color="link" class="d-lg-none">Register now!</CButton>
+                                            <CButton color="link"
+                                                     class="px-0">
+                                                パスワードをお忘れの方はこちら
+                                            </CButton>
+                                            <CButton @click="toRegister()"
+                                                     color="link"
+                                                     class="d-lg-none">
+                                                登録がまだの方はこちら
+                                            </CButton>
                                         </CCol>
                                     </CRow>
                                 </CForm>
@@ -42,18 +49,20 @@
                             color="primary"
                             text-color="white"
                             class="text-center py-5 d-md-down-none"
-                            body-wrapper
-                        >
+                            body-wrapperp>
                             <CCardBody>
-                                <h2>Sign up</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+<!--                                <h2>Sign up</h2>-->
+                                <p>
+                                    登録は簡単
+                                    <br><br>メールアドレスと<br>パスワードを入力するだけ
+                                    <br><br>さあ、お勉強を始めよう！
+                                </p>
                                 <CButton
+                                    @click="toRegister()"
                                     color="light"
                                     variant="outline"
-                                    size="lg"
-                                >
-                                    Register Now!
+                                    size="lg">
+                                    登録する
                                 </CButton>
                             </CCardBody>
                         </CCard>
@@ -87,6 +96,9 @@ export default {
                 .catch((error) => {
                     this.inputErrorHandle(error);
                 })
+        },
+        toRegister: function () {
+            this.$router.push({ name: 'Register'});
         }
     }
 }

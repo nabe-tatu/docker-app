@@ -14,6 +14,7 @@
                         return host + "/api/v1/users/" + id;
                     },
                     recommendUsers: host + "/api/v1/recommendUsers",
+                    register: host + "/api/register",
                 }
             }
         }

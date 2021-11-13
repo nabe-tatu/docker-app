@@ -15,9 +15,11 @@ use \App\Http\Controllers\Api\V1\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('register', [\App\Http\Controllers\Api\V1\UserController::class,'store']);
+
 Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::apiResource('tweets', TweetController::class)->only(['index']);
-    Route::apiResource('users', UserController::class)->only(['show', 'update']);
+    Route::apiResource('users', UserController::class)->only(['show','store', 'update']);
     Route::get('/loginUser', [UserController::class, 'loginUser']);
     Route::get('/recommendUsers', [UserController::class, 'recommendUsers']);
 });

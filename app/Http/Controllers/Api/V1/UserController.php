@@ -23,6 +23,28 @@ class UserController extends Controller
     {
         $this->userService = $userService;
     }
+
+    /**
+     * ユーザー登録
+     * @param UserRequest $request
+     * @return UserResource
+     */
+    public function store(UserRequest $request)
+    {
+        return $this->userService->store($request);
+    }
+
+    /**
+     * ユーザー(プロフィール更新)
+     * @param UserRequest $request
+     * @param User $user
+     * @return UserResource|\Illuminate\Http\JsonResponse
+     */
+    public function update(UserRequest $request, User $user)
+    {
+        return $this->userService->update($request, $user);
+    }
+
     /**
      * ログインユーザリソース取得
      * @param Request $request
@@ -40,16 +62,5 @@ class UserController extends Controller
     public function recommendUsers()
     {
         return UserResource::collection(User::paginate(10));
-    }
-
-    /**
-     * ユーザー(プロフィール更新)
-     * @param UserRequest $request
-     * @param User $user
-     * @return UserResource|\Illuminate\Http\JsonResponse
-     */
-    public function update(UserRequest $request, User $user)
-    {
-        return $this->userService->update($request, $user);
     }
 }

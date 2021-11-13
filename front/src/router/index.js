@@ -84,6 +84,11 @@ function configRoutes() {
             component: Login,
         },
         {
+            path: '/register',
+            name: 'Register',
+            component: Register,
+        },
+        {
             path: '/',
             redirect: '/home',
             name: 'Home',

@@ -6,6 +6,15 @@ use App\Models\User;
 class UserRepository implements UserRepositoryInterface
 {
     /**
+     * @param array $data
+     * @return mixed
+     */
+    public function store(Array $data)
+    {
+        return User::create($data);
+    }
+
+    /**
      * @param User $user
      * @param array $data
      * @return User
