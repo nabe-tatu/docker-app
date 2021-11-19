@@ -47,6 +47,7 @@ class UserController extends Controller
     }
 
     /**
+     * TODO::そもそもREST以外のAPIは別クラスに切り分けるべき？？
      * ログインユーザリソース取得
      * @param Request $request
      * @return UserResource
@@ -57,6 +58,7 @@ class UserController extends Controller
     }
 
     /**
+     * TODO::そもそもREST以外のAPIは別クラスに切り分けるべき？？
      * おすすめユーザー取得
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -65,6 +67,13 @@ class UserController extends Controller
         return UserResource::collection(User::paginate(10));
     }
 
+    /**
+     * TODO::リクエストクラス作って切り分けたい
+     * TODO::そもそもREST以外のAPIは別クラスに切り分けるべき？？
+     * パスワード再設定URLをメールで送付
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|string
+     */
     public function sendResetPasswordUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -77,11 +86,16 @@ class UserController extends Controller
             ],422);
         }
 
-        //TODO::メール送信処理
-
-        return $this->userService->sendResetPasswordUrl();
+        return $this->userService->sendResetPasswordUrlMail();
     }
 
+    /**
+     * TODO::リクエストクラス作って切り分けたい
+     * TODO::そもそもREST以外のAPIは別クラスに切り分けるべき？？
+     * パスワードを変更
+     * @param Request $request
+     * @return UserResource|\Illuminate\Http\JsonResponse
+     */
     public function resetPassword(Request $request)
     {
         $validator = Validator::make($request->all(), [

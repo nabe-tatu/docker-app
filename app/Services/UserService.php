@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
-class UserService
+class UserService extends Service
 {
     /**
      * @var UserRepositoryInterface
@@ -44,6 +44,7 @@ class UserService
     }
 
     /**
+     * TODO::もっと簡単に書きたい
      * ユーザー(プロフィール更新)
      * @param Request $request
      * @param User $user
@@ -138,15 +139,43 @@ class UserService
         return new UserResource($this->userRepository->update($user, $data));
     }
 
-    public function sendResetPasswordUrl(): string
+    /**
+     * パスワード再設定メール送信
+     * @return string
+     */
+    public function sendResetPasswordUrlMail(): string
+    {
+         $this->sendMail(
+             \request()->input('email'),
+             'Fine パスワード変更',
+             $this->resetPasswordUrl()
+         );
+
+         return 'success';
+    }
+
+    /**
+     * パスワード再設定画面を返却するURL生成
+     * 時間制限付き
+     * 180秒
+     * パラメーターを潰す際に制限時間を付与(DBやファイルで管理しているわけではない)
+     * URLを知っていれば時間内であれば誰でもアクセス可能
+     * @return string
+     */
+    private function resetPasswordUrl(): string
     {
         return URL::temporarySignedRoute(
             'resetPassword',
-            now()->addSeconds(10000),
+            now()->addSeconds(180),
             ['email' => \request()->input('email')]
         );
     }
 
+    /**
+     * パスワードを変更
+     * @param Request $request
+     * @return UserResource
+     */
     public function resetPassword(Request $request): UserResource
     {
         $user = $this->userRepository->firstByEmail($request->input('email'));
@@ -159,6 +188,14 @@ class UserService
         );
     }
 
+    /**
+     * TODO::リクエストクラス作って切り分けたい
+     * 認証通る前のユーザーのIDパスワードが正しいかチェック
+     * バリデーションのロジック
+     * @param $attribute
+     * @param $value
+     * @param $fail
+     */
     public function isCorrectPassword($attribute, $value, $fail)
     {
         $user = User::where('email', \request()->input('email'))->first();
@@ -172,37 +209,8 @@ class UserService
         }
     }
 
-    private function storeS3($user): \Illuminate\Support\Collection
-    {
-        $collection = collect($user);
-
-        $profilePath = '/user/profile/' . $user->id;
-        $backgroundPath = '/user/background/' . $user->id;
-
-        $profilePath = $this->putS3(
-            $profilePath,
-            request()->file('profile_image_file')
-        );
-
-        $backgroundPath = $this->putS3(
-            $backgroundPath,
-            request()->file('background_image_file')
-        );
-
-        $collection = $collection->put(
-            'profile_image',
-            config('api.s3.domain') . $profilePath
-        );
-
-        $collection = $collection->put(
-            'background_image',
-            config('api.s3.domain') . $backgroundPath
-        );
-
-        return $collection;
-    }
-
     /**
+     * S3にファイルおく
      * @param string $path
      * @param $file
      * @return bool
