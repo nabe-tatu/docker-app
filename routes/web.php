@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('login', 'app')->name('login');
+Route::view('register', 'app')->name('register');
+Route::view('forgetPassword', 'app')->name('forgetPassword');
+
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class,'login']);
 Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class,'logout']);
+Route::get('resetPassword', [\App\Http\Controllers\Auth\ResetPasswordController::class,'render'])->name('resetPassword');
+
 
 Route::get('/{any}', [\App\Http\Controllers\SpaController::class, 'index'])
     ->where('any', '.*');

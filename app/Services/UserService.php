@@ -1,11 +1,13 @@
 <?php
 namespace App\Services;
 
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class UserService
 {
@@ -136,7 +138,41 @@ class UserService
         return new UserResource($this->userRepository->update($user, $data));
     }
 
-    private function storeS3($user)
+    public function sendResetPasswordUrl(): string
+    {
+        return URL::temporarySignedRoute(
+            'resetPassword',
+            now()->addSeconds(10000),
+            ['email' => \request()->input('email')]
+        );
+    }
+
+    public function resetPassword(Request $request): UserResource
+    {
+        $user = $this->userRepository->firstByEmail($request->input('email'));
+
+        return new UserResource(
+            $this->userRepository->update(
+                $user,
+                ['password' => $request->input('new_password')]
+            )
+        );
+    }
+
+    public function isCorrectPassword($attribute, $value, $fail)
+    {
+        $user = User::where('email', \request()->input('email'))->first();
+
+        if (is_null($user)) {
+            return;
+        }
+
+        if(! Hash::check($value, $user->password)){
+            $fail($attribute.'が違います');
+        }
+    }
+
+    private function storeS3($user): \Illuminate\Support\Collection
     {
         $collection = collect($user);
 
@@ -171,7 +207,7 @@ class UserService
      * @param $file
      * @return bool
      */
-    private function putS3(string $path, $file)
+    private function putS3(string $path, $file): bool
     {
         return Storage::disk('s3')->put($path, $file);
     }

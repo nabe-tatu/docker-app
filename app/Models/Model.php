@@ -62,7 +62,7 @@ abstract class Model extends BaseModel
 
     /**
      * TODO::理解する、もっといい方法、復号化は？、他の暗号化ロジック
-     * パスワードをハッシュ下して保存
+     * パスワードをハッシュして保存
      * @param string $key
      * @param mixed $value
      * @return mixed

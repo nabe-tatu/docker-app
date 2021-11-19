@@ -6,6 +6,12 @@ use App\Models\User;
 interface UserRepositoryInterface
 {
     /**
+     * @param String $email
+     * @return mixed
+     */
+    public function firstByEmail(String $email);
+
+    /**
      * @param array $data
      * @return mixed
      */

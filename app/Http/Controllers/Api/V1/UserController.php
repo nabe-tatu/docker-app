@@ -8,6 +8,7 @@ use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
      * @param Request $request
      * @return UserResource
      */
-    public function loginUser(Request $request)
+    public function loginUser(Request $request): UserResource
     {
         return new UserResource($request->user());
     }
@@ -59,8 +60,50 @@ class UserController extends Controller
      * おすすめユーザー取得
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function recommendUsers()
+    public function recommendUsers(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         return UserResource::collection(User::paginate(10));
+    }
+
+    public function sendResetPasswordUrl(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255|exists:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->getMessageBag()
+            ],422);
+        }
+
+        //TODO::メール送信処理
+
+        return $this->userService->sendResetPasswordUrl();
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255|exists:users',
+            'old_password' => [
+                'required',
+                'string',
+                'max:30',
+                function($attribute, $value, $fail) {
+                    $this->userService->isCorrectPassword($attribute, $value, $fail);
+                }
+            ],
+            'new_password' => 'required|string|max:30|confirmed',
+            'new_password_confirmation' => 'required|string|max:30'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->getMessageBag()
+            ],422);
+        }
+
+        return $this->userService->resetPassword($request);
     }
 }

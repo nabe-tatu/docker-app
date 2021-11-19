@@ -16,6 +16,9 @@ use \App\Http\Controllers\Api\V1\UserController;
 |
 */
 Route::post('register', [\App\Http\Controllers\Api\V1\UserController::class,'store']);
+Route::post('sendResetPasswordUrl', [\App\Http\Controllers\Api\V1\UserController::class,'sendResetPasswordUrl']);
+Route::post('resetPassword', [\App\Http\Controllers\Api\V1\UserController::class,'resetPassword']);
+Route::post('testUrl', [\App\Http\Controllers\Api\V1\UserController::class,'testUrl'])->name('api.testUrl');
 
 Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::apiResource('tweets', TweetController::class)->only(['index']);

@@ -141,12 +141,12 @@
 </template>
 
 <script>
-import VInput from "@/component/form/VInput";
-import VTextArea from "@/component/form/VTextArea";
-import VFile from "@/component/form/VFile";
-import ApiRouter from "@/component/Systems/ApiRouter";
-import ErrorHandler from "@/component/Systems/ErrorHandler";
-import Utils from "@/component/Systems/Utils";
+import VInput from "../../component/form/VInput";
+import VTextArea from "../../component/form/VTextArea";
+import VFile from "../../component/form/VFile";
+import ApiRouter from "../../component/Systems/ApiRouter";
+import ErrorHandler from "../../component/Systems/ErrorHandler";
+import Utils from "../../component/Systems/Utils";
 
 export default {
     name: "Profile",

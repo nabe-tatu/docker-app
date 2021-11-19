@@ -31,7 +31,8 @@
                                             <CButton color="primary" class="px-4" @click="login">ログイン</CButton>
                                         </CCol>
                                         <CCol col="6" class="text-right">
-                                            <CButton color="link"
+                                            <CButton @click="toForgetPassword()"
+                                                     color="link"
                                                      class="px-0">
                                                 パスワードをお忘れの方はこちら
                                             </CButton>
@@ -99,6 +100,9 @@ export default {
         },
         toRegister: function () {
             this.$router.push({ name: 'Register'});
+        },
+        toForgetPassword: function () {
+            this.$router.push({ name: 'ForgetPassword'});
         }
     }
 }

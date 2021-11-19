@@ -6,6 +6,14 @@ use App\Models\User;
 class UserRepository implements UserRepositoryInterface
 {
     /**
+     * @param String $email
+     * @return mixed
+     */
+    public function firstByEmail(String $email)
+    {
+        return User::where('email', $email)->first();
+    }
+    /**
      * @param array $data
      * @return mixed
      */

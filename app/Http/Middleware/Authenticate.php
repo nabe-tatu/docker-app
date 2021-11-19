@@ -15,7 +15,15 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            //TODO::try catchじゃなくルート存在確認で書きたい
+            try {
+
+                return route($request->path());
+
+            }catch (\Exception $e) {
+
+                return route('login');
+            }
         }
     }
 }

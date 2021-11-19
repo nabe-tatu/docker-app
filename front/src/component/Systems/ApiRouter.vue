@@ -15,6 +15,8 @@
                     },
                     recommendUsers: host + "/api/v1/recommendUsers",
                     register: host + "/api/register",
+                    sendResetPasswordUrl: host + "/api/sendResetPasswordUrl",
+                    resetPassword: host + "/api/resetPassword",
                 }
             }
         }

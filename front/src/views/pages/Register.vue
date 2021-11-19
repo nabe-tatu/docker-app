@@ -93,6 +93,7 @@
                                 </v-input>
                                 <button :disabled=sending
                                         @click="postUser()"
+                                        type="button"
                                         class="btn btn-primary float-right">
                                     登録
                                 </button>
@@ -109,9 +110,9 @@
 import VInput from "@/component/form/VInput";
 // import VTextArea from "@/component/form/VTextArea";
 // import VFile from "@/component/form/VFile";
-import ApiRouter from "@/component/Systems/ApiRouter";
-import ErrorHandler from "@/component/Systems/ErrorHandler";
-import Utils from "@/component/Systems/Utils";
+import ApiRouter from "../../component/Systems/ApiRouter";
+import ErrorHandler from "../../component/Systems/ErrorHandler";
+import Utils from "../../component/Systems/Utils";
 
 export default {
     name: 'Register',
