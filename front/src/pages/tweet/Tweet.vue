@@ -48,7 +48,9 @@ name: "Tweet",
                 })
         },
         loadRecommendUserData: function () {
-            window.axios.get(this.routes.recommendUsers)
+            window.axios.get(this.routes.getRecommendUser, {
+                status: 10
+            })
                 .then((response) => {
                     this.recommendUsers = response.data.data;
                 })

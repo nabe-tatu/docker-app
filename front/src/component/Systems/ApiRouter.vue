@@ -13,7 +13,7 @@
                     user: function (id) {
                         return host + "/api/v1/users/" + id;
                     },
-                    recommendUsers: host + "/api/v1/recommendUsers",
+                    getRecommendUser: host + "/api/v1/getRecommendUser",
                     register: host + "/api/register",
                     sendResetPasswordUrl: host + "/api/sendResetPasswordUrl",
                     resetPassword: host + "/api/resetPassword",
