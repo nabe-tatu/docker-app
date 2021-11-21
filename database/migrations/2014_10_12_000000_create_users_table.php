@@ -33,9 +33,13 @@ class CreateUsersTable extends Migration
                 ->comment('自己紹介');
 
             $table->string('profile_image')
+                ->nullable()
+                ->default(NULL)
                 ->comment('プロフィール画像URL');
 
             $table->string('background_image')
+                ->nullable()
+                ->default(NULL)
                 ->comment('背景画像URL');
 
             $table->string('email')

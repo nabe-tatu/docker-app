@@ -14,17 +14,17 @@ class ChangeUsersColumnToNullable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_image')
-                ->nullable()
-                ->default(NULL)
-                ->comment('プロフィール画像URL')
-                ->change();
-
-            $table->string('background_image')
-                ->nullable()
-                ->default(NULL)
-                ->comment('背景画像URL')
-                ->change();
+//            $table->string('profile_image')
+//                ->nullable()
+//                ->default(NULL)
+//                ->comment('プロフィール画像URL')
+//                ->change();
+//
+//            $table->string('background_image')
+//                ->nullable()
+//                ->default(NULL)
+//                ->comment('背景画像URL')
+//                ->change();
         });
     }
 
@@ -35,14 +35,14 @@ class ChangeUsersColumnToNullable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_image')
-                ->comment('プロフィール画像URL')
-                ->change();
-
-            $table->string('background_image')
-                ->comment('背景画像URL')
-                ->change();
-        });
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->string('profile_image')
+//                ->comment('プロフィール画像URL')
+//                ->change();
+//
+//            $table->string('background_image')
+//                ->comment('背景画像URL')
+//                ->change();
+//        });
     }
 }

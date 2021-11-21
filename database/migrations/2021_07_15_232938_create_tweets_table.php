@@ -16,9 +16,14 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->string('tweet', 140)->index('users_tweet_index');
+            $table->string('tweet', 140);
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
         });
     }
 
