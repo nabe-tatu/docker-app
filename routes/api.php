@@ -24,7 +24,5 @@ Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::apiResource('tweets', TweetController::class)->only(['index']);
     Route::apiResource('users', UserController::class)->only(['show','store', 'update']);
     Route::get('loginUser', [UserController::class, 'loginUser']);
-//    Route::get('/getRecommendUser', GetRecommendUserController::class);
+    Route::get('getRecommendUser', GetRecommendUserController::class);
 });
-
-Route::get('v1/getRecommendUser', GetRecommendUserController::class);
