@@ -4,20 +4,14 @@ import App from './App'
 import router from './router'
 import CoreuiVue from '@coreui/vue'
 import {iconsSet as icons} from './assets/icons/icons.js'
-import store from './store'
-// import axios from 'axios' //追記
-// import VueAxios from 'vue-axios' //追記
+import store from './store/index.js'//index.jsならファイル名の指定いらない？？
+import Vuex from 'vuex'
 
-Vue.config.performance = true
+Vue.use(Vuex)
 Vue.use(CoreuiVue)
+Vue.config.performance = true
 Vue.prototype.$log = console.log.bind(console)
 require("./bootstrap");
-// Vue.use(VueAxios, axios)
-
-// import BootstrapVue from 'bootstrap-vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-// Vue.use(BootstrapVue)
 
 new Vue({
     el: '#app',
@@ -34,23 +28,27 @@ new Vue({
         };
     },
     created: function () {
-        String(this.$route.path);
-        if (!(this.$route.path === "/remind/" + this.$route.path.split("/remind/").join("") ||
-            this.$route.path === "/login" ||
-            this.$route.path === "/password/reset")
-        ) {
-            this.loadAuthUserData();
-        }
+        setTimeout(this.load,1000);
     },
     methods: {
-        loadAuthUserData: function () {
-            window.axios.get(`${process.env.VUE_APP_API_URL}` + "/api/v1/loginUser")
-                .then(response => {
-                    this.$root.loginUser = response.data.data;
-                })
-                .catch(() => {
-                    // this.handleErrorStatusCode(error);
-                });
-        }
+        // loadAuthUserData: function () {
+        //     window.axios.get(`${process.env.VUE_APP_API_URL}` + "/api/v1/loginUser")
+        //         .then(response => {
+        //             this.$root.loginUser = response.data.data;
+        //             console.log(this.$root.loginUser,'this.$root.loginUser')
+        //         })
+        //         .catch(() => {
+        //             // this.handleErrorStatusCode(error);
+        //         });
+        // },
+        // isLoading: function () {
+        //     const path = this.$route.path;
+        //     return !(path === "/login" || path === "/forgetPassword" || path === "/register");
+        // },
+        // load: function () {
+        //     if (this.isLoading()) {
+        //         this.loadAuthUserData();
+        //     }
+        // }
     },
 })
