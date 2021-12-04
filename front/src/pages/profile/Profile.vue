@@ -204,7 +204,7 @@ export default {
         },
         addToForm: function () {
             try {
-                let user = this.$root.loginUser;
+                let user = this.$store.state.authUser;
                 this.id = user.id;
                 this.form.screen_name = user.attributes.screen_name;
                 this.form.name = user.attributes.name;
@@ -214,6 +214,7 @@ export default {
                 this.form.email = user.attributes.email;
             } catch (e) {
                 this.showSuccessPopup('データ取得失敗');
+                this.$router.push({ path: '/home' });
             }
         },
         resetForm: function () {

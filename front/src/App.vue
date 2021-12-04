@@ -26,18 +26,18 @@ export default {
             }
         },
         loadAuthUserData : function(){
-            this.$store.commit('user/loadAuthUserData');
+            this.$store.commit('loadAuthUserData');
         },
         isLoading: function () {
             const path = this.$route.path;
             return !(path === "/login" || path === "/forgetPassword" || path === "/register");
         },
-        increment : function(){
-            this.$store.commit('increment',10)
-        },
-        incrementOne : function(){
-            this.$store.dispatch('incrementOne',1)
-        }
+        // increment : function(){
+        //     this.$store.commit('increment',10)
+        // },
+        // incrementOne : function(){
+        //     this.$store.dispatch('incrementOne',1)
+        // }
     },
     computed : {
         users: function(){

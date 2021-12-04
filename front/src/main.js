@@ -4,7 +4,8 @@ import App from './App'
 import router from './router'
 import CoreuiVue from '@coreui/vue'
 import {iconsSet as icons} from './assets/icons/icons.js'
-import store from './store/index.js'//index.jsならファイル名の指定いらない？？
+// import store from './store/index.js'//index.jsならファイル名の指定いらない？？
+import store from './store.js'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
