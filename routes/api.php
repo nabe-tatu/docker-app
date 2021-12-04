@@ -20,6 +20,10 @@ Route::post('sendResetPasswordUrl', [\App\Http\Controllers\Api\V1\UserController
 Route::post('resetPassword', [\App\Http\Controllers\Api\V1\UserController::class,'resetPassword']);
 Route::post('testUrl', [\App\Http\Controllers\Api\V1\UserController::class,'testUrl'])->name('api.testUrl');
 
+//キュー確認用ルート
+//Route::get('job', [\App\Http\Controllers\JobExampleController::class,'queuesDatabase']);
+
+
 Route::prefix('v1')->middleware(['auth:api'])->group(function () {
     Route::apiResource('tweets', TweetController::class)->only(['index']);
     Route::apiResource('users', UserController::class)->only(['show','store', 'update']);
